@@ -83,7 +83,7 @@ export default function Footer() {
 
             <div className={s.ctaRow}>
               <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
-              <Link href="/portal-aluno" className={s.btnOutline}>Portal do Aluno</Link>
+              <Link href="/https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal do Aluno</Link>
             </div>
           </div>
         </nav>

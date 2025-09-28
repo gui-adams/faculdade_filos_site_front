@@ -42,7 +42,6 @@ export default function Header() {
                 </a>
                 <ul className={s.dropdown} role="menu">
                   <li role="none"><Link role="menuitem" href="/about">Sobre</Link></li>
-                  <li role="none"><Link role="menuitem" href="/about/corpo-docente">Corpo Docente</Link></li>
                   <li role="none"><Link role="menuitem" href="/about/infraestrutura">Infraestrutura</Link></li>
                 </ul>
               </li>
@@ -52,9 +51,12 @@ export default function Header() {
                   Institucional <span className={s.caret} aria-hidden="true">▾</span>
                 </a>
                 <ul className={s.dropdown} role="menu">
+                  <li role="none"><Link role="menuitem" href="/institucional/revista">Revista</Link></li>
                   <li role="none"><Link role="menuitem" href="/institucional/editais">Editais</Link></li>
                   <li role="none"><Link role="menuitem" href="/institucional/regulamentos">Regulamentos</Link></li>
                   <li role="none"><Link role="menuitem" href="/institucional/cpa">CPA</Link></li>
+                  <li role="none"><Link role="menuitem" href="/institucional/ouvidoria">Ouvidoria</Link></li>
+                  <li role="none"><Link role="menuitem" href="/institucional/biblioteca">Biblioteca</Link></li>
                 </ul>
               </li>
 
@@ -71,7 +73,7 @@ export default function Header() {
           </nav>
 
           <div className={s.actions}>
-            <Link href="/portal-aluno" className={s.btnOutline}>Portal do Aluno</Link>
+            <Link href="https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal</Link>
             <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
           </div>
 
@@ -88,7 +90,7 @@ export default function Header() {
               <ul className={s.menuList}>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/cursos">Cursos</Link></li>
-                <li><Link href="/about">A Filos</Link></li>
+                <li><Link href="/about">O Filos</Link></li>
                 <li><Link href="/institucional">Institucional</Link></li>
                 <li><Link href="/grupo">Instituições do Grupo</Link></li>
               </ul>

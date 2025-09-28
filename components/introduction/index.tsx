@@ -23,7 +23,6 @@ export function Introduction() {
         </div>
 
         <div className={s.media}>
-          {/* Coloque a imagem em /public/hero-campus.svg (ou troque o nome abaixo) */}
           <Image
             src="/hero-campus.svg"
             alt="Campus da Faculdade Filos"
