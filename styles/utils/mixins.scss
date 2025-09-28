@@ -1,0 +1,8 @@
+@mixin container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+@mixin mq($width) {
+  @media (min-width: $width) { @content; }
+}
