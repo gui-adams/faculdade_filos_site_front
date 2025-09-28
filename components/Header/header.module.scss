@@ -278,3 +278,21 @@
   overflow: hidden; clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
 }
+
+/* ===== Breakpoint: tablet/phone ===== */
+@media (max-width: 1024px) {
+  /* 2 colunas: logo estica à esquerda | hambúrguer à direita */
+  .inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .burger {
+    display: inline-flex;
+    grid-column: 2;       /* força coluna da direita */
+    justify-self: end;    /* encosta no lado direito */
+  }
+
+  .navDesktop { display: none; }
+  .actions    { display: none; }
+  .mobileNav  { display: block; }
+}

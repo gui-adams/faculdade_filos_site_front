@@ -23,7 +23,7 @@ export default function Footer() {
             <Image src="/logo-filos.svg" alt="Faculdade Filos" width={170} height={40} />
           </Link>
           <p className={s.tagline}>
-            Ensino superior de excelência em Formosa e região.
+            Ensino superior de excelência em Águas Lindas e região.
           </p>
 
           <div className={s.social}>
@@ -88,30 +88,29 @@ export default function Footer() {
           </div>
         </nav>
       </div>
-
 <div className={s.bottom}>
   <p className={s.copy}>
     © {year} Faculdade Filos. Todos os direitos reservados.
     <span className={s.sep}>•</span>
-    Desenvolvido por{" "}
-    <a
-      className={s.creditLink}
-      href="https://www.instagram.com/gui.adams/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Perfil do desenvolvedor Guilherme Adams no Instagram"
-    >
-      Guilherme Adams
-    </a>
+    <span className={s.creditLine}>
+      Desenvolvido por{" "}
+      <a
+        className={s.creditLink}
+        href="https://www.instagram.com/gui.adams/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Guilherme Adams
+      </a>
+    </span>
   </p>
 
   <ul className={s.legal}>
     <li><Link href="/privacidade">Privacidade</Link></li>
     <li><Link href="/termos">Termos</Link></li>
-    <li><Link href="/acessibilidade">Acessibilidade</Link></li>
-    <li><Link href="/mapa-do-site">Mapa do site</Link></li>
   </ul>
 </div>
+
 
     </footer>
   );

@@ -15,14 +15,12 @@ export default function Header() {
             <Image src="/logo-filos.svg" alt="Faculdade Filos" width={150} height={34} priority />
           </Link>
 
-          {/* Toggle (mobile) */}
           <input id="nav-toggle" type="checkbox" className={s.toggle} aria-hidden="true" />
           <label htmlFor="nav-toggle" className={s.burger} aria-label="Abrir menu" aria-controls="mobile-drawer">
             <Menu className={s.iconMenu} aria-hidden="true" />
             <X className={s.iconClose} aria-hidden="true" />
           </label>
 
-          {/* Desktop */}
           <nav className={s.navDesktop} aria-label="Menu principal">
             <ul>
               <li><Link href="/">Home</Link></li>
@@ -65,12 +63,10 @@ export default function Header() {
                   Instituições do Grupo <span className={s.caret} aria-hidden="true">▾</span>
                 </a>
                 <ul className={s.dropdown} role="menu">
-                  <li role="none"><Link role="menuitem" href="/grupo/colegio-x">Colégio X</Link></li>
-                  <li role="none"><Link role="menuitem" href="/grupo/fundacao-y">Fundação Y</Link></li>
+                  <li role="none"><Link role="menuitem" href="/grupo/colegio-x">Colégio Filos</Link></li>
+                  <li role="none"><Link role="menuitem" href="/grupo/fundacao-y">Fundação </Link></li>
                 </ul>
               </li>
-
-              <li><Link href="/indicacao">Indicação</Link></li>
             </ul>
           </nav>
 
@@ -79,7 +75,6 @@ export default function Header() {
             <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
           </div>
 
-          {/* Drawer Mobile */}
           <nav className={s.mobileNav} aria-label="Menu móvel">
             <label htmlFor="nav-toggle" className={s.backdrop} aria-hidden="true" />
             <aside id="mobile-drawer" className={s.drawer} role="dialog" aria-modal="true" aria-label="Menu">
@@ -87,7 +82,7 @@ export default function Header() {
                 <Link href="/" className={s.brandMini} aria-label="Página inicial - Faculdade Filos">
                   <Image src="/logo-filos.svg" alt="Faculdade Filos" width={120} height={28} />
                 </Link>
-                <label htmlFor="nav-toggle" className={s.close} aria-label="Fechar menu">×</label>
+                <label htmlFor="nav-toggle" className={s.close} aria-label="Fechar menu"></label>
               </div>
 
               <ul className={s.menuList}>
@@ -96,7 +91,6 @@ export default function Header() {
                 <li><Link href="/about">A Filos</Link></li>
                 <li><Link href="/institucional">Institucional</Link></li>
                 <li><Link href="/grupo">Instituições do Grupo</Link></li>
-                <li><Link href="/indicacao">Indicação</Link></li>
               </ul>
 
               <div className={s.mobileActions}>

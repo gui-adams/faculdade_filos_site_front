@@ -13,16 +13,11 @@ export function Introduction() {
           </h1>
 
           <p className={s.lead}>
-            Graduação e pós-graduação com professores qualificados, infraestrutura moderna
-            e apoio completo ao estudante. Inscrições abertas para o próximo semestre.
-          </p>
+          Na Faculdade Filos, a melhor de Águas Lindas, sua carreira de sucesso começa agora, com a excelência que você merece, aqui mesmo.          </p>
 
           <div className={s.actions}>
             <Link href="/admissions" className={s.ctaPrimary}>
               Inscreva-se
-            </Link>
-            <Link href="/about" className={s.ctaSecondary}>
-              Conheça a instituição
             </Link>
           </div>
         </div>

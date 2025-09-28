@@ -48,7 +48,7 @@ export default function MarketReady() {
           <div className={s.card}>
             <Users className={s.icon} aria-hidden="true" />
             <div>
-              <p className={s.kpi}>+10mil</p>
+              <p className={s.kpi}>Diversos</p>
               <p className={s.desc}>Estudantes matriculados em todo o Brasil.</p>
             </div>
           </div>
@@ -72,9 +72,9 @@ export default function MarketReady() {
           <div className={s.card}>
             <Globe2 className={s.icon} aria-hidden="true" />
             <div>
-              <p className={s.kpi}>+5mil</p>
+              <p className={s.kpi}>Cursos</p>
               <p className={s.desc}>
-                Cursos com formação compatível com demandas do mercado.
+                Forrmação compatível com demandas do mercado.
               </p>
             </div>
           </div>

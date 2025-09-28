@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
+import WhatsAppFab from "@/components/whatsapp-fab";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
                 <Footer />
+                        <WhatsAppFab phone="+55 61 99999-9999" />
+
 
       </body>
     </html>

@@ -1,11 +1,15 @@
 // app/page.tsx
 import type { Metadata } from "next";
+import { Suspense } from "react";
+
 import JsonLd from "@/components/JsonLd";
 import { Introduction } from "@/components/introduction";
 import Course from "@/components/courses";
 import WhyCollege from "@/components/why-college";
 import MarketReady from "@/components/market-ready";
 import Testimonials from "@/components/testimonials";
+
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Faculdade Filos — Ensino Superior de Excelência",
@@ -34,31 +38,31 @@ export default function Home() {
   return (
     <>
       <main>
-        {/* O <h1> está dentro de <Plataforma /> */}
-        <section id="introdução" aria-labelledby="sec-introduction">
-          <Introduction />
-        </section>
+        <Introduction />
 
-        <section id="cursos" aria-labelledby="sec-cursos">
+        <div className="belowFold">
+          <Suspense fallback={null}>
             <Course />
-        </section>
+          </Suspense>
+        </div>
 
-        <section id="sobre" aria-labelledby="sec-sobre">
-          <WhyCollege />        
-        </section>
+        <div className="belowFold">
+          <Suspense fallback={null}>
+            <WhyCollege />
+          </Suspense>
+        </div>
 
-        <section id="mercado" aria-labelledby="sec-mercado">
-      <MarketReady />
-        </section>
+        <div className="belowFold">
+          <Suspense fallback={null}>
+            <MarketReady />
+          </Suspense>
+        </div>
 
-              <section id="depoimentos" aria-labelledby="sec-depoimentos">
-      <Testimonials />
-
-        </section>
-        
-
-
-
+        <div className="belowFold">
+          <Suspense fallback={null}>
+            <Testimonials />
+          </Suspense>
+        </div>
       </main>
 
       <JsonLd json={org} />
