@@ -1,0 +1,280 @@
+/* =================== Top bar =================== */
+.topBar {
+  height: 8px;
+  background: #08284f;
+}
+
+/* =================== Header base =================== */
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e6e8ef;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* logo | nav | actions */
+  align-items: center;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Checkbox (toggle) do drawer */
+.toggle {
+  display: none;
+}
+
+/* =================== Burger (lucide) =================== */
+.burger {
+  display: none;                 /* aparece só no mobile (ver @media) */
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #08284f;                /* lucide usa currentColor */
+  z-index: 90;                   /* acima do conteúdo */
+}
+.burger svg { width: 26px; height: 26px; }
+
+/* Alternância dos ícones Menu/X */
+.iconMenu  { display: inline-block; }
+.iconClose { display: none; }
+.toggle:checked ~ .burger .iconMenu  { display: none; }
+.toggle:checked ~ .burger .iconClose { display: inline-block; }
+
+/* =================== Navegação desktop =================== */
+.navDesktop {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+
+  > ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 72px; /* alinha com a altura do header */
+    display: inline-flex;
+    align-items: center;
+
+    &:hover { color: #0c3a7a; }
+  }
+}
+
+/* ===== Dropdown por hover/focus (sem JS) ===== */
+.hasDropdown { position: relative; }
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.caret {
+  font-size: .85em;
+  transform: translateY(-1px);
+}
+
+.dropdown {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  min-width: 220px;
+  padding: 8px;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  display: none;                 /* fechado por padrão */
+  z-index: 70;
+
+  li { list-style: none; }
+
+  a {
+    display: block;
+    padding: 10px 12px;
+    line-height: 1.2;
+    border-radius: 8px;
+    color: #0f172a;
+    text-decoration: none;
+
+    &:hover { background: #f2f5fb; color: #0c3a7a; }
+  }
+}
+
+/* abre no hover (somente onde existe hover) */
+@media (hover: hover) {
+  .hasDropdown:hover .dropdown { display: block; }
+}
+/* e abre no foco (teclado) */
+.hasDropdown:focus-within .dropdown { display: block; }
+
+/* =================== Ações (lado direito) =================== */
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btnPrimary,
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.btnPrimary {
+  background: #0c2d62;
+  color: #fff;
+  border: 1px solid #0c2d62;
+
+  &:hover { transform: translateY(-1px); background: #0b2860; }
+}
+
+.btnOutline {
+  background: #fff;
+  color: #0c2d62;
+  border: 1.5px solid #0c2d62;
+
+  &:hover { transform: translateY(-1px); background: #f4f7ff; }
+}
+
+/* =================== Mobile (drawer) =================== */
+.mobileNav { display: none; }    /* escondido no desktop */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 85vw;
+  max-width: 380px;
+  background: #fff;
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  box-shadow: -12px 0 24px rgba(0,0,0,.12);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  z-index: 80;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.brandMini { display: inline-flex; align-items: center; }
+
+.close {
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+
+  &:hover { background: #f2f5fb; }
+}
+
+.menuList {
+  list-style: none;
+  padding: 8px 0 16px;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+
+  a {
+    display: block;
+    padding: 10px 4px;
+    color: #0f172a;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover { color: #0c3a7a; }
+  }
+}
+
+.mobileActions {
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+}
+
+/* Redes sociais (lucide) */
+.social {
+  margin-top: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+
+    &:hover { background: #f4f7ff; }
+  }
+
+  /* ícones lucide herdam currentColor; defina aqui */
+  a svg { width: 22px; height: 22px; color: #0f172a; }
+  a:hover svg { color: #0c3a7a; }
+}
+
+/* Toggle: abre drawer e mostra backdrop */
+.toggle:checked ~ .mobileNav .backdrop { opacity: 1; visibility: visible; }
+.toggle:checked ~ .mobileNav .drawer   { transform: translateX(0); }
+
+/* =================== Breakpoint =================== */
+@media (max-width: 1024px) {
+  .burger     { display: inline-flex; }
+  .navDesktop { display: none; }
+  .actions    { display: none; }
+  .mobileNav  { display: block; }
+}
+
+/* Utilitário para textos apenas para leitores de tela */
+.srOnly {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
