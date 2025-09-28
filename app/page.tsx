@@ -1,95 +1,90 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import type { Metadata } from "next";
+
+import { TicketItem } from "@/components/ticket";
+import { Faq } from "@/components/faq";
+import { Newsletter } from "@/components/newsletter";
+import { Contato } from "@/components/contato";
+import { Lgpd } from "@/components/lgpd";
+import { Sobre } from "@/components/sobre";
+import { Plataforma } from "@/components/plataforma";
+import { Conteudo } from "@/components/conteudo";
+import { Video } from "@/components/video";
+import JsonLd from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Faculdade Filos — Ensino Superior de Excelência",
+  description:
+    "Graduação e pós-graduação com professores qualificados e infraestrutura moderna. Inscrições abertas.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const org = {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    name: "Faculdade Filos",
+    url: "https://faculdadefilos.com.br",
+    logo: "https://faculdadefilos.com.br/favicon-32.png",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Av. Principal, 123",
+      addressLocality: "Formosa",
+      addressRegion: "GO",
+      postalCode: "73800-000",
+      addressCountry: "BR",
+    },
+  };
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+  return (
+    <>
+      <main>
+        <section id="plataforma">
+          <h1>Faculdade Filos</h1>
+          <Plataforma />
+        </section>
+
+        <section id="conteudo">
+          <h2>Conteúdo</h2>
+          <Conteudo />
+        </section>
+
+        <section id="lgpd">
+          <h2>LGPD</h2>
+          <Lgpd />
+        </section>
+
+        <section id="video">
+          <h2>Vídeo</h2>
+          <Video />
+        </section>
+
+        <section id="newsletter">
+          <h2>Newsletter</h2>
+          <Newsletter />
+        </section>
+
+        <section id="planos">
+          <h2>Planos</h2>
+          <TicketItem />
+        </section>
+
+        <section id="faq">
+          <h2>Perguntas frequentes</h2>
+          <Faq />
+        </section>
+
+        <section id="sobre">
+          <h2>Sobre</h2>
+          <Sobre />
+        </section>
+
+        <section id="contato">
+          <h2>Contato</h2>
+          <Contato />
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      <JsonLd json={org} />
+    </>
   );
 }

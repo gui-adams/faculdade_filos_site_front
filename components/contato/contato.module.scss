@@ -1,0 +1,193 @@
+.contatodiv {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  margin-bottom: 4rem; /* Espaço inferior para evitar sobreposição com o footer */
+
+  h2 {
+    font-size: 2.4rem;
+    line-height: 4rem;
+    color: #374754;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem; /* Espaço inferior para separar o título do conteúdo */
+  }
+
+  span {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    color: #252430;
+    text-align: justify; /* Justificando o texto */
+    font-family: 'DM Sans', sans-serif;
+    padding-top: 1rem;
+    max-width: 600px; /* Para controlar a largura do texto */
+  }
+
+  .centralizado {
+    display: block;
+    text-align: center; /* Centraliza o texto */
+    margin: 0 auto; /* Centraliza se necessário */
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.8rem;
+      line-height: 3rem;
+    }
+
+    span {
+      font-size: 1rem;
+      line-height: 1.4rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    h2 {
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+    }
+
+    span {
+      font-size: 0.9rem;
+      line-height: 1.3rem;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    h2 {
+      font-size: 3rem;
+      line-height: 5rem;
+    }
+
+    span {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+}
+
+.form {
+  width: 640px;
+  margin: 2rem auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* Espaçamento entre os elementos */
+
+  .div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #252430;
+      font-family: 'DM Sans', sans-serif;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background-color: #f5f5f5;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #e8e8e8;
+      border-radius: 1rem;
+      outline: none;
+      font-weight: bold;
+    }
+
+    textarea {
+      height: 150px;
+      resize: vertical; /* Permite redimensionar verticalmente */
+    }
+
+    button {
+      height: 40px;
+      font-size: 16px;
+      background-color: #0074bc;
+      border: 0;
+      border-radius: 8px;
+      color: #fbfbfb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem;
+      margin-top: 2rem;
+      transition: all 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 90%; /* Adapta o formulário em telas menores */
+
+    .div h3 {
+      font-size: 1.4rem;
+    }
+
+    input,
+    textarea {
+      font-size: 14px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 0.6rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    width: 95%; /* Mais espaçamento em telas menores como Galaxy S8 */
+
+    .div h3 {
+      font-size: 1.2rem;
+    }
+
+    input,
+    textarea {
+      font-size: 12px;
+    }
+
+    button {
+      font-size: 12px;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    width: 800px; /* Aumenta a largura do formulário em telas grandes */
+
+    .div h3 {
+      font-size: 1.8rem;
+    }
+
+    input,
+    textarea {
+      font-size: 18px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 1rem 3rem;
+    }
+  }
+}

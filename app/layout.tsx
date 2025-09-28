@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Faculdade Filos",
   },
   description:
-    "Graduação e pós-graduação com professores qualificados e infraestrutura moderna. Inscrições abertas.",
+    "Graduação e pós-graduação com professores qualificados e infraestrutura moderna.",
   applicationName: "Faculdade Filos",
   alternates: {
     canonical: "/",

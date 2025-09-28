@@ -1,0 +1,30 @@
+.videoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 1px; /* Reduzi o padding lateral para 10px */
+  background-color: #FBFBFB; /* Fundo claro para destacar o vídeo */
+  max-width: 800px; /* Reduzi o limite de largura máxima */
+  width: 100%; /* Largura total do contêiner */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.video {
+  width: 90%; /* Reduzi a largura do vídeo para ocupar 90% da largura do contêiner */
+  height: auto; /* Ajusta automaticamente a altura conforme a largura */
+  border: none; /* Remove a borda padrão */
+  border-radius: 10px; /* Borda arredondada para o vídeo */
+  aspect-ratio: 16/9; /* Mantém a proporção de 16:9 */
+}
+
+/* Para dispositivos móveis */
+@media screen and (max-width: 768px) {
+  .videoWrapper {
+    max-width: 100%; /* O contêiner ocupa 100% da largura da tela em dispositivos móveis */
+    padding: 10px; /* Reduz o padding em telas menores */
+  }
+
+  .video {
+    height: 200px; /* Reduzi ainda mais a altura do vídeo para dispositivos menores */
+  }
+}

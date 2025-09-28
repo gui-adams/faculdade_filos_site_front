@@ -1,0 +1,88 @@
+.sobreContainer {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens */
+  justify-content: space-between; /* Espaço igual entre o texto e a imagem */
+  margin: 4rem 0; /* Espaço superior e inferior */
+
+  /* Estilos para o texto */
+  .texto {
+    flex: 1; /* O texto ocupará 50% da largura */
+    padding-right: 2rem; /* Espaço entre o texto e a imagem */
+    margin-left: 5rem; /* Margem para telas maiores */
+
+    h2 {
+      font-size: 2.4rem;
+      color: #374754;
+      font-family: 'DM Sans', sans-serif;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      color: #252430;
+      text-align: justify; /* Justifica o texto */
+      font-family: 'DM Sans', sans-serif;
+
+      span {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+
+    /* Responsividade para telas menores */
+    @media (max-width: 768px) {
+      padding-right: 0; /* Remove o espaçamento à direita */
+      margin-left: 0; /* Remove a margem à esquerda em telas menores */
+      margin-bottom: 2rem; /* Espaço inferior entre o texto e a imagem */
+      padding-left: 1rem;  /* Adiciona padding à esquerda */
+      padding-right: 1rem; /* Adiciona padding à direita */
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Responsividade para telas grandes */
+    @media (min-width: 1920px) {
+      h2 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+    }
+  }
+
+  /* Estilos para a imagem */
+  .imagem {
+    flex: 1; /* A imagem ocupará 50% da largura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%; /* Garante que a imagem não ultrapasse o contêiner */
+      height: auto; /* Mantém a proporção da imagem */
+      border-radius: 8px; /* Adiciona cantos arredondados */
+    }
+  }
+
+  /* Para telas pequenas */
+  @media (max-width: 768px) {
+    flex-direction: column; /* Empilha o texto e a imagem */
+    text-align: center; /* Centraliza o texto e imagem para melhor apresentação */
+
+    .imagem {
+      width: 100%; /* A imagem ocupará 100% da largura */
+    }
+  }
+}
