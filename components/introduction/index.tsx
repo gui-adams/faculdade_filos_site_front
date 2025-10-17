@@ -1,36 +1,33 @@
 import Link from "next/link";
 import Image from "next/image";
 import s from "./style.module.scss";
+import capa1 from "@/public/capa1.png";
 
 export function Introduction() {
   return (
     <section className={s.hero} id="Introduction" aria-labelledby="hero-title">
       <div className={s.inner}>
         <div className={s.copy}>
-          {/* H1 único da página */}
-          <h1 id="hero-title">
-            Faculdade Filos: Ensino superior de excelência
-          </h1>
+          <h1 id="hero-title">Faculdade Filos</h1>
 
-          <p className={s.lead}>
-          Na Faculdade Filos, a melhor de Águas Lindas, sua carreira de sucesso começa agora, com a excelência que você merece, aqui mesmo.          </p>
+          <h2 className={s.lead}>Ensino de qualidade para o seu futuro!</h2>
 
           <div className={s.actions}>
             <Link href="/admissions" className={s.ctaPrimary}>
-              Inscreva-se
+              Vem ser Filos
             </Link>
           </div>
         </div>
 
         <div className={s.media}>
           <Image
-            src="/hero-campus.svg"
+            src={capa1}
             alt="Campus da Faculdade Filos"
             width={560}
             height={420}
             priority
             sizes="(max-width: 768px) 90vw, 560px"
-            className={s.image}
+            className={s.capa1} // defina .capa1 no seu SCSS se quiser estilizar a imagem
           />
         </div>
       </div>

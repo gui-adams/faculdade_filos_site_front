@@ -2,19 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { GraduationCap, ArrowRight } from "lucide-react";
 import s from "./styles.module.scss";
-import { courses } from "./data";        // ← importa a lista
-// (opcional) import types se precisar em props ou helpers
-// import type { Course } from "./types";
+import { courses } from "./data";
 
 export default function Course() {
   return (
     <section className={s.section} id="cursos" aria-labelledby="cursos-title">
-      {/* Radios (CSS filter) */}
       <input id="tab-graduacao" type="radio" name="tab-cursos" className={s.tabInput} defaultChecked />
-      <input id="tab-pos"        type="radio" name="tab-cursos" className={s.tabInput} />
-      <input id="tab-mba"        type="radio" name="tab-cursos" className={s.tabInput} />
+      {/* <input id="tab-pos" type="radio" name="tab-cursos" className={s.tabInput} /> */}
+      {/* <input id="tab-mba" type="radio" name="tab-cursos" className={s.tabInput} /> */}
 
-      {/* Cabeçalho */}
       <div className={s.head}>
         <div className={s.titleBox}>
           <p className={s.kicker}><GraduationCap aria-hidden="true" /> Cursos</p>
@@ -23,12 +19,12 @@ export default function Course() {
         </div>
         <div className={s.tabs} role="tablist" aria-label="Categorias de cursos">
           <label htmlFor="tab-graduacao" role="tab" aria-controls="cursos-grid">Graduação</label>
-          <label htmlFor="tab-pos"        role="tab" aria-controls="cursos-grid">Pós-Graduação</label>
-          <label htmlFor="tab-mba"        role="tab" aria-controls="cursos-grid">MBA</label>
+          {/* <label htmlFor="tab-pos" role="tab" aria-controls="cursos-grid">Pós-Graduação</label> */}
+          {/* <label htmlFor="tab-mba" role="tab" aria-controls="cursos-grid">MBA</label> */}
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Grid de cursos */}
       <ul id="cursos-grid" className={s.grid}>
         {courses.map((c) => (
           <li key={c.id} className={s.card} data-level={c.level}>

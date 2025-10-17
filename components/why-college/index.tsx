@@ -40,17 +40,15 @@ export default function WhyCollege() {
         </div>
       </div>
 
-      {/* Coluna de texto */}
       <div className={s.textCol}>
         <h2 id="why-title" className={s.title}>
           Por que escolher a Faculdade Filos?
         </h2>
 
         <p className={s.lead}>
-          Na Filos, somos apaixonados por educação e comprometidos em oferecer
-          materiais de aprendizagem de alta qualidade para nossos estudantes.
-          Aqui, você encontra oportunidades reais de crescimento, com ensino
-          acessível, atualizado e conectado com o mercado.
+          Desde 2018, a Faculdade Filos tem como propósito transformar vidas por meio da educação de qualidade. Ao longo de 7 anos de atuação, consolidamos nossa história oferecendo ensino superior que alia conhecimento, prática e valores humanos.<br/><br/>
+          Com uma estrutura moderna, professores altamente qualificados e metodologias inovadoras, buscamos preparar nossos alunos para os desafios do mercado de trabalho e para o exercício da cidadania, formando profissionais capazes de fazer a diferença em suas áreas de atuação.<br/><br/>
+          Na Filos, acreditamos que a educação é a chave para o crescimento pessoal e profissional, e é por isso que investimos diariamente em excelência acadêmica, inovação e acolhimento.
         </p>
 
         <div className={s.features}>
