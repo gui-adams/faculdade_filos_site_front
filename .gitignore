@@ -9,6 +9,15 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+next
+.git
+npm-debug.log
+Dockerfile
+docker-compose.yml
+nginx.conf
+.env.local
+.env.development
+.env.test
 
 # testing
 /coverage
