@@ -14,7 +14,7 @@ export function Introduction() {
 
           <div className={s.actions}>
             <Link href="/admissions" className={s.ctaPrimary}>
-              Vem ser Filos
+              Vem ser Filos!
             </Link>
           </div>
         </div>
