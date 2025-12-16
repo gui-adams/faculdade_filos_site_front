@@ -13,17 +13,16 @@
   }
 }
 
-/* ===== Coluna de mídia ===== */
 .mediaCol {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 1.5rem;
-  align-items: start;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start;
 
   @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
+    justify-content: center; 
   }
 }
+
 
 .img {
   width: 100%;

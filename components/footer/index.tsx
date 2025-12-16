@@ -20,7 +20,7 @@ export default function Footer() {
         {/* Brand / social */}
         <div className={s.brandBox}>
           <Link href="/" className={s.logoLink} aria-label="Página inicial - Faculdade Filos">
-            <Image src="/logo-filos.svg" alt="Faculdade Filos" width={170} height={40} />
+            <Image src="/logo_footer.svg" alt="Faculdade Filos" width={170} height={40} />
           </Link>
           <p className={s.tagline}>
             Ensino superior de excelência em Águas Lindas e região.
@@ -83,7 +83,7 @@ export default function Footer() {
 
             <div className={s.ctaRow}>
               <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
-              <Link href="/https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal do Aluno</Link>
+              <Link href="/https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal</Link>
             </div>
           </div>
         </nav>

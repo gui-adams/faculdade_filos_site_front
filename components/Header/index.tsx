@@ -12,7 +12,7 @@ export default function Header() {
       <header className={s.header}>
         <div className={s.inner}>
           <Link href="/" className={s.brand} aria-label="Página inicial - Faculdade Filos">
-            <Image src="/logo-filos.svg" alt="Faculdade Filos" width={150} height={34} priority />
+            <Image src="/logo.svg" alt="Faculdade Filos" width={150} height={34} priority />
           </Link>
 
           <input id="nav-toggle" type="checkbox" className={s.toggle} aria-hidden="true" />
