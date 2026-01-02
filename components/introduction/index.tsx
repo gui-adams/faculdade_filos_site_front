@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import s from "./style.module.scss";
-import capa1 from "@/public/capa1.png";
+import capa1 from "@/public/porque.webp";
 
 export function Introduction() {
   return (

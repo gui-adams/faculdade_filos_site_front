@@ -9,29 +9,19 @@ export default function MarketReady() {
       {/* Coluna de mídia */}
       <div className={s.mediaCol}>
         <div className={s.portrait}>
-          <Image
-            src="/market/graduate.jpg"
-            alt="Formanda com diploma"
-            width={360}
-            height={480}
-            className={s.img}
-            sizes="(max-width: 1024px) 60vw, 360px"
-            priority
-          />
+<Image
+  src="/mercado.webp"
+  alt="Formação voltada para o mercado"
+  width={360}
+  height={480}
+  className={s.img}
+  sizes="(max-width: 1024px) 60vw, 360px"
+  priority
+/>
+
         </div>
 
-        <div className={s.landscapeWrap}>
-          <div className={s.landscape}>
-            <Image
-              src="/market/online-class.jpg"
-              alt="Aula online"
-              width={720}
-              height={420}
-              className={s.img}
-              sizes="(max-width: 1024px) 90vw, 720px"
-            />
-          </div>
-        </div>
+       
       </div>
 
       {/* Coluna de conteúdo */}
@@ -74,7 +64,7 @@ export default function MarketReady() {
             <div>
               <p className={s.kpi}>Cursos</p>
               <p className={s.desc}>
-                Forrmação compatível com demandas do mercado.
+                Formação compatível com demandas do mercado.
               </p>
             </div>
           </div>

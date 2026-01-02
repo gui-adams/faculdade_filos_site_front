@@ -68,15 +68,23 @@
   height: 56px;
   background: linear-gradient(180deg, #0b3a74 0%, #204f86 45%, rgba(32,79,134,0) 100%);
 }
-
 /* Foto */
-.photoWrap { padding: 0 18px; margin-top: -22px; }
-.photo {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
+.photoWrap {
+  padding: 0 18px;
+  margin-top: -22px;
 }
+
+.photoBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;   /* padroniza todas as fotos */
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e5e7eb;    /* fallback enquanto carrega */
+}
+
+.photo { object-fit: contain; background: #fff; }
+
 
 /* Ícone aspas circular */
 .quoteIcon {

@@ -7,7 +7,6 @@ import { testimonials } from "./data";
 export default function Testimonials() {
   return (
     <section className={s.section} id="testimonials" aria-labelledby="testimonials-title">
-      {/* Painel de introdução (esquerda) */}
       <div className={s.introPanel}>
         <h2 id="testimonials-title" className={s.title}>
           Quem escolheu a <br />
@@ -25,31 +24,30 @@ export default function Testimonials() {
         </p>
       </div>
 
-      {/* Lista de depoimentos (direita) */}
       <div className={s.cards}>
-        {testimonials.map((t) => (
+        {testimonials.map((t, idx) => (
           <article key={t.id} className={s.card}>
-            {/* faixa de gradiente superior */}
             <div className={s.gradient} aria-hidden="true" />
 
-            {/* foto do aluno */}
+            {/* foto do aluno (crop padronizado, sem CLS) */}
             <div className={s.photoWrap}>
-              <Image
-                src={t.photo}
-                alt={`Foto de ${t.name}`}
-                width={560}
-                height={280}
-                className={s.photo}
-                sizes="(max-width: 900px) 100vw, 560px"
-              />
+              <div className={s.photoBox}>
+                <Image
+                  src={t.photo}
+                  alt={`Foto de ${t.name}`}
+                  fill
+                  className={s.photo}
+                  sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 360px"
+                  priority={idx === 0}
+                  loading={idx === 0 ? "eager" : "lazy"}
+                />
+              </div>
             </div>
 
-            {/* ícone de aspas */}
             <div className={s.quoteIcon} aria-hidden="true">
               <Quote />
             </div>
 
-            {/* conteúdo */}
             <div className={s.content}>
               <p className={s.excerpt}>{t.excerpt}</p>
 
