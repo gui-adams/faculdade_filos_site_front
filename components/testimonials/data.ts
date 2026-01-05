@@ -2,30 +2,30 @@ import type { Testimonial } from "./types";
 
 export const testimonials: Testimonial[] = [
   {
-    id: "israel",
+    id: "Samuel",
     name: "Israel",
-    program: "Filosofia",
-    photo: "/israel-depoimentos.webp",
+    program: "Direito",
+    photo: "/israel - depoimentos.webp", // Caminho corrigido conforme sua pasta public
     excerpt:
-      "Foi uma grande jornada na minha vida, fazer parte de uma das melhores universidades do Brasil...",
+      "A Faculdade Filos foi um divisor de águas para mim. O que mais me marcou foi a proximidade com os professores; eu não era apenas mais um número na chamada, mas alguém com voz ativa nos debates de direito.",
     href: "/depoimentos/israel",
   },
   {
     id: "leticia",
-    name: "Letícia Naome",
-    program: "Ciências Econômicas",
-    photo: "/letícia-depoimento.webp", // <-- com acento (igual ao arquivo)
+    name: "Letícia",
+    program: "Pedagogia",
+    photo: "/letícia - depoimento.webp", 
     excerpt:
-      "Entrei na Faculdade Filos em 2016 para fazer ciências econômicas com bolsa e desde então...",
+      "Conseguir a bolsa em 2025 foi a oportunidade que eu precisava. Encontrei um ambiente acolhedor e focado na prática, onde cada disciplina me ajudou a entender o mercado real de forma humana e direta.",
     href: "/depoimentos/leticia",
   },
   {
-    id: "asn",
-    name: "ASN",
+    id: "João Paulo",
+    name: "João Paulo",
     program: "Administração",
-    photo: "/asn-depoimentos.webp", // <-- era ash, mas o arquivo é asn
+    photo: "/ash - depoimentos.webp", 
     excerpt:
-      "A experiência acadêmica foi completa e transformadora. Tive apoio para estágio e pesquisa...",
+      "Minha jornada na Filos foi marcada pelo suporte constante. Além das aulas, tive apoio direto para conseguir meu primeiro estágio na área administrativa, o que foi essencial para minha carreira hoje.",
     href: "/depoimentos/asn",
   },
 ];

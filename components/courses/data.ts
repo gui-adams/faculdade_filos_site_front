@@ -7,7 +7,8 @@ export const courses: Course[] = [
     level: "graduacao",
     type: "Bacharelado",
     modality: "EAD",
-    image: "/adm.png",
+    // Corrigido: o arquivo na pasta public é .webp e possui acento
+    image: "/administração.webp", 
     applyHref: "/admissions?curso=administracao",
     learnHref: "/cursos/administracao",
   },
@@ -17,7 +18,8 @@ export const courses: Course[] = [
     level: "graduacao",
     type: "Bacharelado",
     modality: "Presencial",
-    image: "/direito.png",
+    // Corrigido: o arquivo real é .webp
+    image: "/direito.webp",
     applyHref: "/admissions?curso=direito",
     learnHref: "/cursos/direito",
   },
@@ -27,7 +29,8 @@ export const courses: Course[] = [
     level: "graduacao",
     type: "Licenciatura",
     modality: "Presencial",
-    image: "/pedagogia.png",
+    // Corrigido: o arquivo real é .webp
+    image: "/pedagogia.webp",
     applyHref: "/admissions?curso=pedagogia",
     learnHref: "/cursos/pedagogia",
   },
@@ -37,7 +40,8 @@ export const courses: Course[] = [
     level: "graduacao",
     type: "Tecnólogo",
     modality: "Presencial",
-    image: "/radiologia.png",
+    // Corrigido: o arquivo real é .webp
+    image: "/radiologia.webp",
     applyHref: "/admissions?curso=radiologia",
     learnHref: "/cursos/radiologia",
   },
@@ -47,7 +51,9 @@ export const courses: Course[] = [
     level: "pos",
     type: "Especialização",
     modality: "EAD",
-    image: "/cursos/pos-gestao-projetos.jpg",
+    // Nota: Verifique se estes arquivos existem em public/cursos/ 
+    // ou se deseja usar uma imagem genérica como "/mercado.webp"
+    image: "/mercado.webp", 
     applyHref: "/admissions?curso=pos-gestao-projetos",
     learnHref: "/cursos/pos-gestao-projetos",
   },
@@ -57,7 +63,8 @@ export const courses: Course[] = [
     level: "mba",
     type: "MBA",
     modality: "EAD",
-    image: "/cursos/mba-data.jpg",
+    // Nota: Verifique se estes arquivos existem ou use uma alternativa
+    image: "/porque.webp",
     applyHref: "/admissions?curso=mba-data",
     learnHref: "/cursos/mba-data",
   },

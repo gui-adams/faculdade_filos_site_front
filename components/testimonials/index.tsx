@@ -51,9 +51,6 @@ export default function Testimonials() {
             <div className={s.content}>
               <p className={s.excerpt}>{t.excerpt}</p>
 
-              <Link className={s.readMore} href={t.href}>
-                continuar lendo +
-              </Link>
 
               <div className={s.person}>
                 <p className={s.name}>{t.name}</p>
