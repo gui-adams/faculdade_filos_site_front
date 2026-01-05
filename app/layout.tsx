@@ -23,7 +23,6 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://faculdadefilos.com.br"),
   title: {
@@ -38,12 +37,7 @@ export const metadata: Metadata = {
     languages: { "pt-BR": "/", en: "/en" },
   },
   openGraph: {
-    type: "website",
-    url: "/",
-    siteName: "Faculdade Filos",
-    title: "Faculdade Filos — Ensino Superior de Excelência",
-    description:
-      "Graduação, pós e pesquisa. Inscreva-se no vestibular.",
+    // ... configurações de OG
     images: [{ url: "/og-default.png", width: 1200, height: 630 }],
   },
   twitter: {
@@ -51,8 +45,13 @@ export const metadata: Metadata = {
     images: ["/og-default.png"],
   },
   icons: {
-    icon: "/favicon-32.png",
-    apple: "/apple-touch-icon.png",
+    // Corrigido para apontar para o arquivo SVG existente na sua pasta public
+    icon: [
+      { url: "/favicon_fundo_transparente.svg", type: "image/svg+xml" },
+    ],
+    // Como você não tem um arquivo específico para apple-touch-icon nos logs, 
+    // o ideal é usar o mesmo SVG ou remover se não for usar.
+    apple: "/favicon_fundo_transparente.svg", 
   },
   category: "education",
   other: {

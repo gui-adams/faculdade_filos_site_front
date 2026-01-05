@@ -24,7 +24,7 @@ export default function Home() {
     "@type": "CollegeOrUniversity",
     name: "Faculdade Filos",
     url: "https://faculdadefilos.com.br",
-    logo: "https://faculdadefilos.com.br/favicon-32.png",
+    logo: "https://faculdadefilos.com.br/favicon_fundo_transparente.svg",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Av. Principal, 123",

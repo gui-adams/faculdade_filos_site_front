@@ -1,10 +1,21 @@
-// components/Header.tsx
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import s from "./header.module.scss";
 import { Menu, X, Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import EnrollModal from "../EnrollModal";
 
 export default function Header() {
+  // Estado para controlar a abertura do modal de inscrição geral
+  const [isEnrollOpen, setIsEnrollOpen] = useState(false);
+
+  const handleOpenEnroll = (e: React.MouseEvent) => {
+    e.preventDefault(); // Evita a navegação do link
+    setIsEnrollOpen(true);
+  };
+
   return (
     <>
       <div className={s.topBar} aria-hidden="true" />
@@ -12,6 +23,7 @@ export default function Header() {
       <header className={s.header}>
         <div className={s.inner}>
           <Link href="/" className={s.brand} aria-label="Página inicial - Faculdade Filos">
+            {/* Corrigido para /logo.svg conforme estrutura do projeto */}
             <Image src="/logo.svg" alt="Faculdade Filos" width={150} height={34} priority />
           </Link>
 
@@ -26,9 +38,9 @@ export default function Header() {
               <li><Link href="/">Home</Link></li>
 
               <li className={s.hasDropdown}>
-                <a href="/cursos" className={s.trigger} aria-haspopup="menu">
+                <Link href="/cursos" className={s.trigger} aria-haspopup="menu">
                   Cursos <span className={s.caret} aria-hidden="true">▾</span>
-                </a>
+                </Link>
                 <ul className={s.dropdown} role="menu">
                   <li role="none"><Link role="menuitem" href="/cursos/graduacao">Graduação</Link></li>
                   <li role="none"><Link role="menuitem" href="/cursos/pos-graduacao">Pós-graduação</Link></li>
@@ -37,9 +49,9 @@ export default function Header() {
               </li>
 
               <li className={s.hasDropdown}>
-                <a href="/about" className={s.trigger} aria-haspopup="menu">
+                <Link href="/about" className={s.trigger} aria-haspopup="menu">
                   A Filos <span className={s.caret} aria-hidden="true">▾</span>
-                </a>
+                </Link>
                 <ul className={s.dropdown} role="menu">
                   <li role="none"><Link role="menuitem" href="/about">Sobre</Link></li>
                   <li role="none"><Link role="menuitem" href="/about/infraestrutura">Infraestrutura</Link></li>
@@ -47,9 +59,9 @@ export default function Header() {
               </li>
 
               <li className={s.hasDropdown}>
-                <a href="/institucional" className={s.trigger} aria-haspopup="menu">
+                <Link href="/institucional" className={s.trigger} aria-haspopup="menu">
                   Institucional <span className={s.caret} aria-hidden="true">▾</span>
-                </a>
+                </Link>
                 <ul className={s.dropdown} role="menu">
                   <li role="none"><Link role="menuitem" href="/institucional/revista">Revista</Link></li>
                   <li role="none"><Link role="menuitem" href="/institucional/editais">Editais</Link></li>
@@ -61,9 +73,9 @@ export default function Header() {
               </li>
 
               <li className={s.hasDropdown}>
-                <a href="/grupo" className={s.trigger} aria-haspopup="menu">
+                <Link href="/grupo" className={s.trigger} aria-haspopup="menu">
                   Instituições do Grupo <span className={s.caret} aria-hidden="true">▾</span>
-                </a>
+                </Link>
                 <ul className={s.dropdown} role="menu">
                   <li role="none"><Link role="menuitem" href="/grupo/colegio-x">Colégio Filos</Link></li>
                   <li role="none"><Link role="menuitem" href="/grupo/fundacao-y">Fundação </Link></li>
@@ -74,7 +86,10 @@ export default function Header() {
 
           <div className={s.actions}>
             <Link href="https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal</Link>
-            <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
+            {/* Link alterado para disparar o Modal */}
+            <button onClick={handleOpenEnroll} className={s.btnPrimary} style={{ border: 'none', cursor: 'pointer' }}>
+              Inscreva-se
+            </button>
           </div>
 
           <nav className={s.mobileNav} aria-label="Menu móvel">
@@ -82,7 +97,8 @@ export default function Header() {
             <aside id="mobile-drawer" className={s.drawer} role="dialog" aria-modal="true" aria-label="Menu">
               <div className={s.drawerHeader}>
                 <Link href="/" className={s.brandMini} aria-label="Página inicial - Faculdade Filos">
-                  <Image src="/logo-filos.svg" alt="Faculdade Filos" width={120} height={28} />
+                  {/* Corrigido para /logo.svg */}
+                  <Image src="/logo.svg" alt="Faculdade Filos" width={120} height={28} />
                 </Link>
                 <label htmlFor="nav-toggle" className={s.close} aria-label="Fechar menu"></label>
               </div>
@@ -96,8 +112,10 @@ export default function Header() {
               </ul>
 
               <div className={s.mobileActions}>
-                <Link href="/portal-aluno" className={s.btnOutline}>Portal do Aluno</Link>
-                <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
+                <Link href="https://faculdadefilos.jacad.com.br/academico/aluno/login" className={s.btnOutline}>Portal do Aluno</Link>
+                <button onClick={handleOpenEnroll} className={s.btnPrimary} style={{ border: 'none', cursor: 'pointer', width: '100%' }}>
+                  Inscreva-se
+                </button>
               </div>
 
               <div className={s.social}>
@@ -111,6 +129,13 @@ export default function Header() {
           </nav>
         </div>
       </header>
+
+      {/* Modal de Inscrição Geral */}
+      <EnrollModal 
+        isOpen={isEnrollOpen} 
+        onClose={() => setIsEnrollOpen(false)} 
+        courseTitle="" 
+      />
     </>
   );
 }

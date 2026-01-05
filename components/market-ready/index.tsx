@@ -1,27 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Users, Briefcase, BadgeCheck, Globe2, ArrowRight } from "lucide-react";
 import s from "./styles.module.scss";
+import EnrollModal from "../EnrollModal";
 
 export default function MarketReady() {
+  // Estado para controlar a abertura do modal
+  const [isEnrollOpen, setIsEnrollOpen] = useState(false);
+
   return (
     <section className={s.section} id="market-ready" aria-labelledby="market-ready-title">
       {/* Coluna de mídia */}
       <div className={s.mediaCol}>
         <div className={s.portrait}>
-<Image
-  src="/mercado.webp"
-  alt="Formação voltada para o mercado"
-  width={360}
-  height={480}
-  className={s.img}
-  sizes="(max-width: 1024px) 60vw, 360px"
-  priority
-/>
-
+          <Image
+            src="/mercado.webp"
+            alt="Formação voltada para o mercado"
+            width={360}
+            height={480}
+            className={s.img}
+            sizes="(max-width: 1024px) 60vw, 360px"
+            priority
+          />
         </div>
-
-       
       </div>
 
       {/* Coluna de conteúdo */}
@@ -71,11 +74,23 @@ export default function MarketReady() {
         </div>
 
         <div className={s.ctaRow}>
-          <Link href="/admissions" className={s.btnLight}>
+          {/* Botão alterado de Link para acionador do Modal */}
+          <button 
+            onClick={() => setIsEnrollOpen(true)} 
+            className={s.btnLight}
+            style={{ border: 'none', cursor: 'pointer' }}
+          >
             Inscreva-se <ArrowRight aria-hidden="true" />
-          </Link>
+          </button>
         </div>
       </div>
+
+      {/* Componente do Modal de Inscrição */}
+      <EnrollModal 
+        isOpen={isEnrollOpen} 
+        onClose={() => setIsEnrollOpen(false)} 
+        courseTitle="" 
+      />
     </section>
   );
 }

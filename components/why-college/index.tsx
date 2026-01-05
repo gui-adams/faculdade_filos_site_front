@@ -9,7 +9,7 @@ export default function WhyCollege() {
       <div className={s.mediaCol}>
         <div className={s.mainImage}>
           <Image
-            src="/porque.webp"
+            src="/porque.webp" // Certifique-se de usar o caminho corrigido que discutimos antes
             alt="Educação a distância da Faculdade Filos"
             width={720}
             height={480}
