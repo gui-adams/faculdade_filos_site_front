@@ -1,9 +1,7 @@
 services:
   faculdade-app:
+    build: .
     container_name: faculdade-app
-    build:
-      context: .
-      dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
       - .env
@@ -18,8 +16,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf:/etc/nginx/conf.d
-      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/conf:/etc/nginx/conf.d:ro 
     depends_on:
       - faculdade-app
     networks:
