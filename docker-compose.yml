@@ -1,4 +1,14 @@
-nginx:
+services:
+  faculdade-app:        # 2 espaços de recuo
+    build: .
+    container_name: faculdade-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - faculdade-network
+
+  nginx:                # 2 espaços de recuo (estava fora do 'services')
     image: nginx:stable-alpine
     container_name: nginx-proxy
     restart: unless-stopped
@@ -7,8 +17,12 @@ nginx:
       - "443:443"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d:ro 
-      - ./nginx/certs:/etc/nginx/certs:ro  # <--- ADICIONE ESTA LINHA EXATAMENTE ASSIM
+      - ./nginx/certs:/etc/nginx/certs:ro  # Verifique se esta linha existe
     depends_on:
       - faculdade-app
     networks:
       - faculdade-network
+
+networks:
+  faculdade-network:
+    driver: bridge
