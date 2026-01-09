@@ -1,67 +1,72 @@
 #!/usr/bin/env bash
 set -euo pipefail
-IFS=$'\n\t'
 
-# ========= CONFIG =========
 APP_DIR="/home/adams/faculdade_filos_site_front"
 BRANCH="main"
-EXPECTED_REMOTE_URL="https://github.com/gui-adams/faculdade_filos_site_front.git"
+EXPECTED_ORIGIN="https://github.com/gui-adams/faculdade_filos_site_front.git"
 
-# Docker compose: tenta plugin novo, cai pro legado se precisar
-DC() {
-  if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
-    docker compose "$@"
-  else
-    docker-compose "$@"
-  fi
-}
+echo "==> Iniciando deploy em: $(date -Iseconds)"
+echo "==> Host: $(hostname) | Usuário: $(whoami)"
 
-log() { echo "==> $*"; }
-
-log "Iniciando deploy em: $(date -Iseconds)"
-log "Host: $(hostname) | Usuário: $(whoami)"
-
-# ========= SAFETY CHECKS =========
 if [[ "$(id -u)" -eq 0 ]]; then
-  log "ERRO: não rode este deploy como root. Use o usuário 'adams'."
-  log "Dica: saia do root e rode: cd $APP_DIR && ./deploy.sh"
+  echo "==> ERRO: não rode este deploy como root. Use o usuário 'adams'."
+  echo "==> Dica: cd $APP_DIR && ./deploy.sh"
   exit 1
 fi
 
-log "Indo para o diretório do projeto: $APP_DIR"
+echo "==> Indo para o diretório do projeto: $APP_DIR"
 cd "$APP_DIR"
 
-log "Checando se o diretório é um repositório git..."
+echo "==> Checando se é repositório git..."
 git rev-parse --is-inside-work-tree >/dev/null
 
-log "Validando remote origin..."
+echo "==> Validando remote origin..."
 ORIGIN_URL="$(git remote get-url origin || true)"
-if [[ "$ORIGIN_URL" != "$EXPECTED_REMOTE_URL" && "$ORIGIN_URL" != "${EXPECTED_REMOTE_URL/https:\/\/github.com\//git@github.com:}" ]]; then
-  log "ERRO: remote origin inesperado."
-  log "Encontrado: $ORIGIN_URL"
-  log "Esperado:  $EXPECTED_REMOTE_URL"
+if [[ "$ORIGIN_URL" != "$EXPECTED_ORIGIN" ]]; then
+  echo "==> ERRO: remote origin inesperado!"
+  echo "==> Esperado: $EXPECTED_ORIGIN"
+  echo "==> Atual:     $ORIGIN_URL"
   exit 1
 fi
 
-log "Buscando últimas alterações de origin..."
+echo "==> Buscando últimas alterações de origin..."
 git fetch --prune origin
 
-log "Garantindo branch $BRANCH..."
+echo "==> Garantindo branch $BRANCH..."
 git checkout -f "$BRANCH"
 
-log "Resetando para origin/$BRANCH (descarta alterações locais)..."
+echo "==> Resetando para origin/$BRANCH (descarta alterações locais versionadas)..."
 git reset --hard "origin/$BRANCH"
 
-log "Limpando arquivos não rastreados (hard clean) para evitar lixo/artefatos..."
-git clean -fdx
+echo "==> Limpando arquivos não rastreados, MAS preservando .env e nginx/certs/ ..."
+# -d: inclui diretórios
+# -f: força
+# -x: inclui ignorados pelo .gitignore (bom para limpar build/lixo)
+# -e: exclui do clean (preserva)
+git clean -fdx \
+  -e .env \
+  -e nginx/certs \
+  -e nginx/certs/**
 
-log "(Opcional) Atualizando submódulos..."
-git submodule update --init --recursive || true
+echo "==> Garantindo permissões seguras dos certificados (se existirem)..."
+if [[ -f "nginx/certs/privkey.pem" ]]; then
+  chmod 600 nginx/certs/privkey.pem || true
+fi
+if [[ -f "nginx/certs/fullchain.pem" ]]; then
+  chmod 644 nginx/certs/fullchain.pem || true
+fi
 
-log "Subindo containers com build atualizado..."
-DC up -d --build --remove-orphans
+echo "==> Verificando se .env existe..."
+if [[ ! -f ".env" ]]; then
+  echo "==> ERRO: .env não encontrado em $APP_DIR/.env"
+  echo "==> Crie o arquivo .env (fora do git) e rode novamente."
+  exit 1
+fi
 
-log "Containers em execução:"
-DC ps
+echo "==> Subindo containers com build atualizado..."
+docker compose up -d --build
 
-log "Deploy concluído com sucesso! 🎉"
+echo "==> Containers em execução:"
+docker compose ps
+
+echo "==> Deploy concluído com sucesso! 🎉"
