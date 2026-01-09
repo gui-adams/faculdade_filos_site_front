@@ -15,7 +15,10 @@ npm-debug.log
 .env.local
 .env.development
 .env.test
-
+nginx/certs
+.env
+.git
+node_modules
 # testing
 /coverage
 
