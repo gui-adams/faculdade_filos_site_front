@@ -1,96 +1,71 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# --- CONFIGURAÇÃO ---
 APP_DIR="/home/adams/faculdade_filos_site_front"
 BRANCH="main"
 ORIGIN_URL="https://github.com/gui-adams/faculdade_filos_site_front.git"
+SECRETS_DIR="/home/adams/secrets/faculdade_filos"
+SECRETS_ENV="$SECRETS_DIR/.env"
 
-# Onde você pode guardar o .env fora do projeto (recomendado)
-SECRETS_ENV="/home/adams/secrets/faculdade_filos/.env"
-
-# Certificados esperados (Cloudflare Origin / Nginx)
 CERT_DIR="$APP_DIR/nginx/certs"
 CERT_PEM="$CERT_DIR/cert.pem"
 KEY_PEM="$CERT_DIR/key.pem"
 
 ts() { date -Iseconds; }
-die() { echo "==> ERRO: $*" >&2; exit 1; }
+log() { echo "==> [$(ts)] $*"; }
+die() { echo "==> [$(ts)] ERRO: $*" >&2; exit 1; }
 
-echo "==> Iniciando deploy em: $(ts)"
-echo "==> Host: $(hostname) | Usuário: $(whoami)"
+log "Iniciando deploy no host: $(hostname) | Usuário: $(whoami)"
 
-# (Recomendado) não rodar como root; use sudo apenas para docker se precisar.
+# 1. SEGURANÇA: Validar se não é root
 if [[ "$(id -u)" -eq 0 ]]; then
-  die "não rode este deploy como root. Use o usuário 'adams' (e use sudo apenas onde necessário)."
+  die "Não rode este deploy como root. Utilize o utilizador 'adams'."
 fi
 
-echo "==> Indo para o diretório do projeto: $APP_DIR"
-cd "$APP_DIR" || die "diretório do projeto não existe: $APP_DIR"
+cd "$APP_DIR" || die "Diretório $APP_DIR não encontrado."
 
-echo "==> Checando se é repositório git..."
-git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "não é um repositório git: $APP_DIR"
-
-echo "==> Validando remote origin..."
-remote_url="$(git remote get-url origin || true)"
-[[ "$remote_url" == "$ORIGIN_URL" ]] || die "origin incorreto: '$remote_url' (esperado: '$ORIGIN_URL')"
-
-echo "==> Buscando últimas alterações de origin..."
+# 2. GIT: Sincronização Segura
+log "Atualizando código do repositório..."
 git fetch --prune origin
-
-echo "==> Garantindo branch $BRANCH..."
-git checkout "$BRANCH"
+git checkout -f "$BRANCH"
 git reset --hard "origin/$BRANCH"
 
-echo "==> Limpando arquivos não rastreados, MAS preservando .env e nginx/certs/ (cert.pem/key.pem)..."
-# IMPORTANTÍSSIMO: -e tem que excluir a pasta E o conteúdo
-git clean -fdx \
-  -e ".env" \
-  -e "nginx/certs" \
-  -e "nginx/certs/**" \
-  -e "nginx/certs/*"
+# 3. LIMPEZA: Remover ficheiros desnecessários (Exceto Certificados e Env)
+log "Limpando ficheiros não rastreados..."
+git clean -fdx -e ".env" -e "nginx/certs/"
 
-echo "==> Garantindo .env (sem apagar)..."
-if [[ ! -f "$APP_DIR/.env" ]]; then
-  if [[ -f "$SECRETS_ENV" ]]; then
-    echo "==> .env não existe no projeto. Criando symlink a partir de: $SECRETS_ENV"
-    ln -s "$SECRETS_ENV" "$APP_DIR/.env"
-  else
-    die ".env não encontrado. Crie em '$APP_DIR/.env' ou em '$SECRETS_ENV'."
-  fi
+# 4. SEGREDOS: Garantir .env seguro
+if [[ ! -f ".env" ]]; then
+    if [[ -f "$SECRETS_ENV" ]]; then
+        log "Linkando .env de diretório seguro..."
+        ln -sf "$SECRETS_ENV" ".env"
+    else
+        die "Ficheiro .env não encontrado em $SECRETS_ENV"
+    fi
 fi
+chmod 600 .env # Apenas o dono pode ler o ficheiro de segredos
 
-echo "==> Verificando certificados do Nginx (cert.pem/key.pem)..."
+# 5. CERTIFICADOS: Ajuste de Permissões (Resolve o erro 'Permission Denied')
+log "Validando e protegendo certificados..."
 if [[ ! -f "$CERT_PEM" || ! -f "$KEY_PEM" ]]; then
-  echo "==> Certificados não encontrados:"
-  echo "    - $CERT_PEM"
-  echo "    - $KEY_PEM"
-  die "crie os arquivos acima (NÃO versionar) e rode novamente."
+    die "Certificados ausentes em $CERT_DIR"
 fi
 
-echo "==> Ajustando permissões seguras dos certificados (sem apagar)..."
-# tenta ajustar com sudo (recomendado), se não tiver sudo, tenta direto
-if command -v sudo >/dev/null 2>&1; then
-  sudo chmod 644 "$CERT_PEM" || true
-  sudo chmod 600 "$KEY_PEM" || true
-else
-  chmod 644 "$CERT_PEM" || true
-  chmod 600 "$KEY_PEM" || true
-fi
+# Garante que o utilizador adams é o dono e protege as chaves
+sudo chown -R adams:adams "$CERT_DIR"
+chmod 755 "$CERT_DIR"
+chmod 644 "$CERT_PEM"
+chmod 600 "$KEY_PEM" # Chave privada deve ser estritamente privada
 
-echo "==> Escolhendo comando do Docker (docker ou sudo docker)..."
-DOCKER="docker"
-if ! docker ps >/dev/null 2>&1; then
-  if command -v sudo >/dev/null 2>&1 && sudo -n docker ps >/dev/null 2>&1; then
-    DOCKER="sudo docker"
-  else
-    die "sem permissão no Docker. Solução: 'sudo usermod -aG docker adams' + logout/login, ou rode com sudo."
-  fi
-fi
+# 6. DOCKER: Build e Cleanup
+log "Iniciando Build e Update dos containers..."
+# --pull garante que a imagem base (node:alpine) está atualizada com patches de segurança
+docker compose build --pull --no-cache 
+docker compose up -d --remove-orphans
 
-echo "==> Subindo containers com build atualizado..."
-$DOCKER compose up -d --build
+# 7. MANUTENÇÃO: Limpar imagens antigas (Dangling Images)
+log "Limpando cache de build antigo para libertar espaço..."
+docker image prune -f
 
-echo "==> Containers em execução:"
-$DOCKER compose ps
-
-echo "==> Deploy concluído com sucesso! 🎉"
+log "Deploy concluído com sucesso! 🎉"
