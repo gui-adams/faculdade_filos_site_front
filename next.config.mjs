@@ -5,12 +5,10 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [{ protocol: 'https', hostname: '**' }],
   },
-  experimental: {
-    optimizeCss: true, 
-  },
-  i18n: {
-    locales: ['pt-BR', 'en'],
-    defaultLocale: 'pt-BR',
-  },
+  // Otimizações de performance para o servidor
+  compress: true, 
+  powersByHeader: false,
+  generateEtags: true,
 };
+
 export default nextConfig;
