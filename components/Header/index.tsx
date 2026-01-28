@@ -1,6 +1,5 @@
 // components/Header.tsx
 import Link from "next/link";
-import Image from "next/image";
 import s from "./header.module.scss";
 import { Menu, X, Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
@@ -11,9 +10,16 @@ export default function Header() {
 
       <header className={s.header}>
         <div className={s.inner}>
-          <Link href="/" className={s.brand} aria-label="Página inicial - Faculdade Filos">
-            <Image src="/logo-filos.svg" alt="Faculdade Filos" width={150} height={34} priority />
-          </Link>
+<Link href="/" className={s.brand} aria-label="Página inicial - Faculdade Filos">
+  <img
+    src="/logo.svg"
+    alt="Faculdade Filos"
+    width={150}
+    height={34}
+    className={s.logo}
+  />
+</Link>
+
 
           <input id="nav-toggle" type="checkbox" className={s.toggle} aria-hidden="true" />
           <label htmlFor="nav-toggle" className={s.burger} aria-label="Abrir menu" aria-controls="mobile-drawer">
@@ -81,9 +87,16 @@ export default function Header() {
             <label htmlFor="nav-toggle" className={s.backdrop} aria-hidden="true" />
             <aside id="mobile-drawer" className={s.drawer} role="dialog" aria-modal="true" aria-label="Menu">
               <div className={s.drawerHeader}>
-                <Link href="/" className={s.brandMini} aria-label="Página inicial - Faculdade Filos">
-                  <Image src="/logo-filos.svg" alt="Faculdade Filos" width={120} height={28} />
-                </Link>
+<Link href="/" className={s.brandMini} aria-label="Página inicial - Faculdade Filos">
+  <img
+    src="/logo.svg"
+    alt="Faculdade Filos"
+    width={120}
+    height={28}
+    className={s.logoMini}
+  />
+</Link>
+
                 <label htmlFor="nav-toggle" className={s.close} aria-label="Fechar menu"></label>
               </div>
 

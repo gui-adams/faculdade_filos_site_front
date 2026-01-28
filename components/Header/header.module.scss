@@ -1,12 +1,15 @@
+@use "@/styles/utils/variables" as *;
+@use "@/styles/utils/mixins" as m;
+
 /* =================== Top bar =================== */
 .topBar {
   height: 8px;
-  background: #08284f;
+  background: $brand;
 }
 
 /* =================== Header base =================== */
 .header {
-  background: #fff;
+  background: $bg;
   border-bottom: 1px solid #e6e8ef;
   position: sticky;
   top: 0;
@@ -14,40 +17,61 @@
 }
 
 .inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  @include m.container;
+
   height: 72px;
-  padding: 0 16px;
   display: grid;
   grid-template-columns: auto 1fr auto; /* logo | nav | actions */
   align-items: center;
   gap: 16px;
+
+  position: relative; /* necessário pro burger absoluto no mobile */
 }
 
-.brand {
+/* =================== Brand / Logo =================== */
+.brand,
+.brandMini {
   display: inline-flex;
   align-items: center;
 }
 
-/* Checkbox (toggle) do drawer */
+/* Reset global aplica max-width:100% em img/svg.
+   Aqui travamos o tamanho do logo para não "esticar". */
+.logo {
+  width: 180px;
+  height: auto;
+  max-width: none;
+}
+
+.logoMini {
+  width: 120px;
+  height: auto;
+  max-width: none;
+}
+
+/* =================== Toggle (drawer) =================== */
 .toggle {
   display: none;
 }
 
 /* =================== Burger (lucide) =================== */
 .burger {
-  display: none;                 /* aparece só no mobile (ver @media) */
+  display: none; /* aparece só no mobile */
   width: 40px;
   height: 40px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #08284f;                /* lucide usa currentColor */
-  z-index: 90;                   /* acima do conteúdo */
+  color: $brand;
+  z-index: 90;
 }
-.burger svg { width: 26px; height: 26px; }
 
-/* Alternância dos ícones Menu/X */
+.burger svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Alternância Menu/X */
 .iconMenu  { display: inline-block; }
 .iconClose { display: none; }
 .toggle:checked ~ .burger .iconMenu  { display: none; }
@@ -69,18 +93,18 @@
   }
 
   a {
-    color: #0f172a;
+    color: $text;
     text-decoration: none;
     font-weight: 500;
-    line-height: 72px; /* alinha com a altura do header */
+    line-height: 72px;
     display: inline-flex;
     align-items: center;
 
-    &:hover { color: #0c3a7a; }
+    &:hover { color: $brand-600; }
   }
 }
 
-/* ===== Dropdown por hover/focus (sem JS) ===== */
+/* ===== Dropdown (hover/focus) ===== */
 .hasDropdown { position: relative; }
 
 .trigger {
@@ -101,10 +125,10 @@
   min-width: 220px;
   padding: 8px;
   border: 1px solid #e6e8ef;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 6px 24px rgba(0,0,0,.08);
-  display: none;                 /* fechado por padrão */
+  border-radius: $radius-md;
+  background: $bg;
+  box-shadow: $shadow-md;
+  display: none;
   z-index: 70;
 
   li { list-style: none; }
@@ -113,19 +137,19 @@
     display: block;
     padding: 10px 12px;
     line-height: 1.2;
-    border-radius: 8px;
-    color: #0f172a;
-    text-decoration: none;
+    border-radius: 10px;
+    color: $text;
 
-    &:hover { background: #f2f5fb; color: #0c3a7a; }
+    &:hover {
+      background: #f2f5fb;
+      color: $brand-600;
+    }
   }
 }
 
-/* abre no hover (somente onde existe hover) */
 @media (hover: hover) {
   .hasDropdown:hover .dropdown { display: block; }
 }
-/* e abre no foco (teclado) */
 .hasDropdown:focus-within .dropdown { display: block; }
 
 /* =================== Ações (lado direito) =================== */
@@ -141,30 +165,32 @@
   justify-content: center;
   height: 40px;
   padding: 0 16px;
-  border-radius: 8px;
-  font-weight: 700;
+  border-radius: 10px;
+  font-weight: 800;
   text-decoration: none;
   transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
 }
 
 .btnPrimary {
-  background: #0c2d62;
+  background: $brand;
   color: #fff;
-  border: 1px solid #0c2d62;
+  border: 1px solid $brand;
 
-  &:hover { transform: translateY(-1px); background: #0b2860; }
+  &:hover { transform: translateY(-1px); background: $brand-600; border-color: $brand-600; }
 }
 
 .btnOutline {
-  background: #fff;
-  color: #0c2d62;
-  border: 1.5px solid #0c2d62;
+  background: $bg;
+  color: $brand;
+  border: 1.5px solid $brand;
 
   &:hover { transform: translateY(-1px); background: #f4f7ff; }
 }
 
 /* =================== Mobile (drawer) =================== */
-.mobileNav { display: none; }    /* escondido no desktop */
+.mobileNav {
+  display: none; /* escondido no desktop */
+}
 
 .backdrop {
   position: fixed;
@@ -182,7 +208,7 @@
   height: 100%;
   width: 85vw;
   max-width: 380px;
-  background: #fff;
+  background: $bg;
   transform: translateX(100%);
   transition: transform .25s ease;
   box-shadow: -12px 0 24px rgba(0,0,0,.12);
@@ -199,14 +225,12 @@
   margin-bottom: 8px;
 }
 
-.brandMini { display: inline-flex; align-items: center; }
-
 .close {
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: 10px;
 
   &:hover { background: #f2f5fb; }
 }
@@ -221,11 +245,10 @@
   a {
     display: block;
     padding: 10px 4px;
-    color: #0f172a;
-    font-weight: 700;
-    text-decoration: none;
+    color: $text;
+    font-weight: 800;
 
-    &:hover { color: #0c3a7a; }
+    &:hover { color: $brand-600; }
   }
 }
 
@@ -235,7 +258,7 @@
   gap: 10px;
 }
 
-/* Redes sociais (lucide) */
+/* Redes sociais */
 .social {
   margin-top: auto;
   display: flex;
@@ -248,51 +271,56 @@
     justify-content: center;
     width: 32px;
     height: 32px;
-    border-radius: 8px;
+    border-radius: 10px;
 
     &:hover { background: #f4f7ff; }
   }
 
-  /* ícones lucide herdam currentColor; defina aqui */
-  a svg { width: 22px; height: 22px; color: #0f172a; }
-  a:hover svg { color: #0c3a7a; }
+  a svg {
+    width: 22px;
+    height: 22px;
+    color: $text;
+  }
+
+  a:hover svg { color: $brand-600; }
 }
 
-/* Toggle: abre drawer e mostra backdrop */
+/* Toggle abre drawer/backdrop */
 .toggle:checked ~ .mobileNav .backdrop { opacity: 1; visibility: visible; }
 .toggle:checked ~ .mobileNav .drawer   { transform: translateX(0); }
 
-/* =================== Breakpoint =================== */
+/* =================== Mobile breakpoint (<= lg) =================== */
 @media (max-width: 1024px) {
-  .burger     { display: inline-flex; }
+  /* some desktop */
   .navDesktop { display: none; }
   .actions    { display: none; }
   .mobileNav  { display: block; }
-}
+  .burger     { display: inline-flex; }
 
-/* Utilitário para textos apenas para leitores de tela */
-.srOnly {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
-}
-
-/* ===== Breakpoint: tablet/phone ===== */
-@media (max-width: 1024px) {
-  /* 2 colunas: logo estica à esquerda | hambúrguer à direita */
+  /* logo centralizado na viewport, burger à direita */
   .inner {
     grid-template-columns: 1fr auto;
   }
 
-  .burger {
-    display: inline-flex;
-    grid-column: 2;       /* força coluna da direita */
-    justify-self: end;    /* encosta no lado direito */
+  .brand {
+    grid-column: 1 / -1;
+    justify-content: center;
   }
 
-  .navDesktop { display: none; }
-  .actions    { display: none; }
-  .mobileNav  { display: block; }
+  .logo {
+    width: 170px; /* ajuste fino no mobile */
+    max-width: none;
+  }
+
+  .burger {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* =================== Acessibilidade =================== */
+.srOnly {
+  @include m.sr-only;
 }
