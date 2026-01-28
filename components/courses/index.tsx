@@ -64,11 +64,21 @@ export default function Courses() {
               <h3 className={s.cardTitle}>{c.title}</h3>
 
               <div className={s.actions}>
-                <Link className={s.btnPrimary} href={c.applyHref}>
+                {/* CORREÇÃO: prefetch={false} para evitar erros 404 e lentidão */}
+                <Link 
+                  className={s.btnPrimary} 
+                  href={c.applyHref} 
+                  prefetch={false}
+                >
                   Inscreva-se <ArrowRight aria-hidden="true" />
                 </Link>
 
-                <Link className={s.linkMore} href={c.learnHref}>
+                {/* CORREÇÃO: prefetch={false} para evitar pré-carregamento agressivo */}
+                <Link 
+                  className={s.linkMore} 
+                  href={c.learnHref} 
+                  prefetch={false}
+                >
                   Saiba mais
                 </Link>
               </div>
