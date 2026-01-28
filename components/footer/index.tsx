@@ -2,15 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./styles.module.scss";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-  MapPin,
-  Phone,
-  Mail,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -20,11 +12,7 @@ export default function Footer() {
       <div className={s.top}>
         {/* Brand / social */}
         <div className={s.brandBox}>
-          <Link
-            href="/"
-            className={s.logoLink}
-            aria-label="Página inicial - Faculdade Filos"
-          >
+          <Link href="/" className={s.logoLink} aria-label="Página inicial - Faculdade Filos">
             <Image
               src="/logo_branca.svg"
               alt="Faculdade Filos"
@@ -32,44 +20,23 @@ export default function Footer() {
               height={40}
               className={s.logo}
               sizes="170px"
+              priority={false}
             />
           </Link>
 
-          <p className={s.tagline}>
-            Ensino superior de excelência em Águas Lindas e região.
-          </p>
+          <p className={s.tagline}>Ensino superior de excelência em Águas Lindas e região.</p>
 
           <div className={s.social} aria-label="Redes sociais">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Facebook aria-hidden="true" />
             </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Instagram aria-hidden="true" />
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin aria-hidden="true" />
             </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-            >
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <Youtube aria-hidden="true" />
             </a>
           </div>
@@ -80,17 +47,26 @@ export default function Footer() {
           <div className={s.col}>
             <p className={s.title}>Cursos</p>
             <ul className={s.list}>
+              {/* Se estas rotas EXISTIREM, pode remover prefetch={false} */}
               <li>
-                <Link href="/cursos/graduacao">Graduação</Link>
+                <Link href="/cursos/graduacao" prefetch={false}>
+                  Graduação
+                </Link>
               </li>
               <li>
-                <Link href="/cursos/pos-graduacao">Pós-graduação</Link>
+                <Link href="/cursos/pos-graduacao" prefetch={false}>
+                  Pós-graduação
+                </Link>
               </li>
               <li>
-                <Link href="/cursos/mba">MBA</Link>
+                <Link href="/cursos/mba" prefetch={false}>
+                  MBA
+                </Link>
               </li>
               <li>
-                <Link href="/cursos/bolsas">Bolsas e descontos</Link>
+                <Link href="/cursos/bolsas" prefetch={false}>
+                  Bolsas e descontos
+                </Link>
               </li>
             </ul>
           </div>
@@ -98,17 +74,26 @@ export default function Footer() {
           <div className={s.col}>
             <p className={s.title}>Institucional</p>
             <ul className={s.list}>
+              {/* /about existe (você usa no Header), pode manter prefetch normal */}
               <li>
                 <Link href="/about">Sobre</Link>
               </li>
+
+              {/* Estas rotas podem não existir => sem prefetch */}
               <li>
-                <Link href="/institucional/editais">Editais</Link>
+                <Link href="/institucional/editais" prefetch={false}>
+                  Editais
+                </Link>
               </li>
               <li>
-                <Link href="/institucional/regulamentos">Regulamentos</Link>
+                <Link href="/institucional/regulamentos" prefetch={false}>
+                  Regulamentos
+                </Link>
               </li>
               <li>
-                <Link href="/contato">Fale conosco</Link>
+                <Link href="/contato" prefetch={false}>
+                  Fale conosco
+                </Link>
               </li>
             </ul>
           </div>
@@ -127,14 +112,13 @@ export default function Footer() {
               </li>
               <li>
                 <Mail aria-hidden="true" />
-                <a href="mailto:contato@faculdadefilos.com.br">
-                  contato@faculdadefilos.com.br
-                </a>
+                <a href="mailto:contato@faculdadefilos.com.br">contato@faculdadefilos.com.br</a>
               </li>
             </ul>
 
             <div className={s.ctaRow}>
-              <Link href="/admissions" className={s.btnPrimary}>
+              {/* /admissions pode não existir => sem prefetch */}
+              <Link href="/admissions" prefetch={false} className={s.btnPrimary}>
                 Inscreva-se
               </Link>
 
@@ -171,10 +155,14 @@ export default function Footer() {
 
         <ul className={s.legal}>
           <li>
-            <Link href="/privacidade">Privacidade</Link>
+            <Link href="/privacidade" prefetch={false}>
+              Privacidade
+            </Link>
           </li>
           <li>
-            <Link href="/termos">Termos</Link>
+            <Link href="/termos" prefetch={false}>
+              Termos
+            </Link>
           </li>
         </ul>
       </div>

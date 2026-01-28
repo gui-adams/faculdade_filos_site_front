@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "leticia",
-    name: "Letícia Naome",
+    name: "Leticia Naome",
     program: "Ciências Econômicas",
     photo: leticiaPhoto,
     excerpt:

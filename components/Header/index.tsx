@@ -37,19 +37,27 @@ export default function Header() {
                 <Link href="/">Home</Link>
               </li>
 
+              {/* ⚠️ /cursos (página raiz) não existe? então sem prefetch */}
               <li className={s.hasDropdown}>
-                <Link href="/cursos" className={s.trigger} aria-haspopup="menu">
+                <Link href="/cursos" prefetch={false} className={s.trigger} aria-haspopup="menu">
                   Cursos <span className={s.caret} aria-hidden="true">▾</span>
                 </Link>
+
                 <ul className={s.dropdown} role="menu">
                   <li role="none">
-                    <Link role="menuitem" href="/cursos/graduacao">Graduação</Link>
+                    <Link role="menuitem" href="/cursos/graduacao">
+                      Graduação
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/cursos/pos-graduacao">Pós-graduação</Link>
+                    <Link role="menuitem" href="/cursos/pos-graduacao">
+                      Pós-graduação
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/cursos/extensao">Extensão</Link>
+                    <Link role="menuitem" href="/cursos/extensao">
+                      Extensão
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -58,52 +66,77 @@ export default function Header() {
                 <Link href="/about" className={s.trigger} aria-haspopup="menu">
                   A Filos <span className={s.caret} aria-hidden="true">▾</span>
                 </Link>
+
                 <ul className={s.dropdown} role="menu">
                   <li role="none">
-                    <Link role="menuitem" href="/about">Sobre</Link>
+                    <Link role="menuitem" href="/about">
+                      Sobre
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/about/infraestrutura">Infraestrutura</Link>
+                    <Link role="menuitem" href="/about/infraestrutura">
+                      Infraestrutura
+                    </Link>
                   </li>
                 </ul>
               </li>
 
+              {/* ⚠️ /institucional (página raiz) não existe? então sem prefetch */}
               <li className={s.hasDropdown}>
-                <Link href="/institucional" className={s.trigger} aria-haspopup="menu">
+                <Link href="/institucional" prefetch={false} className={s.trigger} aria-haspopup="menu">
                   Institucional <span className={s.caret} aria-hidden="true">▾</span>
                 </Link>
+
                 <ul className={s.dropdown} role="menu">
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/revista">Revista</Link>
+                    <Link role="menuitem" href="/institucional/revista">
+                      Revista
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/editais">Editais</Link>
+                    <Link role="menuitem" href="/institucional/editais">
+                      Editais
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/regulamentos">Regulamentos</Link>
+                    <Link role="menuitem" href="/institucional/regulamentos">
+                      Regulamentos
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/cpa">CPA</Link>
+                    <Link role="menuitem" href="/institucional/cpa">
+                      CPA
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/ouvidoria">Ouvidoria</Link>
+                    <Link role="menuitem" href="/institucional/ouvidoria">
+                      Ouvidoria
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/institucional/biblioteca">Biblioteca</Link>
+                    <Link role="menuitem" href="/institucional/biblioteca">
+                      Biblioteca
+                    </Link>
                   </li>
                 </ul>
               </li>
 
+              {/* ⚠️ /grupo (página raiz) não existe? então sem prefetch */}
               <li className={s.hasDropdown}>
-                <Link href="/grupo" className={s.trigger} aria-haspopup="menu">
+                <Link href="/grupo" prefetch={false} className={s.trigger} aria-haspopup="menu">
                   Instituições do Grupo <span className={s.caret} aria-hidden="true">▾</span>
                 </Link>
+
                 <ul className={s.dropdown} role="menu">
                   <li role="none">
-                    <Link role="menuitem" href="/grupo/colegio-x">Colégio Filos</Link>
+                    <Link role="menuitem" href="/grupo/colegio-x">
+                      Colégio Filos
+                    </Link>
                   </li>
                   <li role="none">
-                    <Link role="menuitem" href="/grupo/fundacao-y">Fundação</Link>
+                    <Link role="menuitem" href="/grupo/fundacao-y">
+                      Fundação
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -112,13 +145,18 @@ export default function Header() {
 
           {/* Desktop actions */}
           <div className={s.actions}>
-            <Link
+            {/* ✅ Link externo: NÃO use next/link */}
+            <a
               href="https://faculdadefilos.jacad.com.br/academico/professor/login"
               className={s.btnOutline}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Portal
-            </Link>
-            <Link href="/admissions" className={s.btnPrimary}>
+            </a>
+
+            {/* ⚠️ /admissions existe? se não existir, sem prefetch */}
+            <Link href="/admissions" prefetch={false} className={s.btnPrimary}>
               Inscreva-se
             </Link>
           </div>
@@ -147,24 +185,26 @@ export default function Header() {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/cursos">Cursos</Link>
+                  <Link href="/cursos" prefetch={false}>Cursos</Link>
                 </li>
                 <li>
                   <Link href="/about">A Filos</Link>
                 </li>
                 <li>
-                  <Link href="/institucional">Institucional</Link>
+                  <Link href="/institucional" prefetch={false}>Institucional</Link>
                 </li>
                 <li>
-                  <Link href="/grupo">Instituições do Grupo</Link>
+                  <Link href="/grupo" prefetch={false}>Instituições do Grupo</Link>
                 </li>
               </ul>
 
               <div className={s.mobileActions}>
-                <Link href="/portal-aluno" className={s.btnOutline}>
+                {/* ⚠️ Essa rota não existe (você mesmo mostrou 404). Sem prefetch. */}
+                <Link href="/portal-aluno" prefetch={false} className={s.btnOutline}>
                   Portal do Aluno
                 </Link>
-                <Link href="/admissions" className={s.btnPrimary}>
+
+                <Link href="/admissions" prefetch={false} className={s.btnPrimary}>
                   Inscreva-se
                 </Link>
               </div>

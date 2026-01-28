@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
                 <Footer />
-                        <WhatsAppFab phone="+55 61 99999-9999" />
+                        <WhatsAppFab phone="+55 61 99906-1757" />
 
 
       </body>
