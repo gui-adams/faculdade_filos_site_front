@@ -1,4 +1,7 @@
+import type { StaticImageData } from "next/image";
+
 export type CourseLevel = "graduacao" | "pos" | "mba";
+
 export type CourseType =
   | "Bacharelado"
   | "Tecnólogo"
@@ -12,7 +15,7 @@ export type Course = {
   level: CourseLevel;
   type: CourseType;
   modality: "EAD" | "Presencial";
-  image: string;     // caminho em /public
-  applyHref: string; // link de inscrição
-  learnHref: string; // link de saiba mais
+  image: StaticImageData | string; // ✅ permite import e string
+  applyHref: string;
+  learnHref: string;
 };
