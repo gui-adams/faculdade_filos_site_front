@@ -1,3 +1,4 @@
+// components/Footer/index.tsx
 import Image from "next/image";
 import Link from "next/link";
 import s from "./styles.module.scss";
@@ -19,25 +20,57 @@ export default function Footer() {
       <div className={s.top}>
         {/* Brand / social */}
         <div className={s.brandBox}>
-          <Link href="/" className={s.logoLink} aria-label="Página inicial - Faculdade Filos">
-            <Image src="/logo-filos.svg" alt="Faculdade Filos" width={170} height={40} />
+          <Link
+            href="/"
+            className={s.logoLink}
+            aria-label="Página inicial - Faculdade Filos"
+          >
+            <Image
+              src="/logo_branca.svg"
+              alt="Faculdade Filos"
+              width={170}
+              height={40}
+              className={s.logo}
+              sizes="170px"
+            />
           </Link>
+
           <p className={s.tagline}>
             Ensino superior de excelência em Águas Lindas e região.
           </p>
 
-          <div className={s.social}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <Facebook />
+          <div className={s.social} aria-label="Redes sociais">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <Facebook aria-hidden="true" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <Instagram />
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <Instagram aria-hidden="true" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <Linkedin />
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin aria-hidden="true" />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <Youtube />
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              <Youtube aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -47,25 +80,42 @@ export default function Footer() {
           <div className={s.col}>
             <p className={s.title}>Cursos</p>
             <ul className={s.list}>
-              <li><Link href="/cursos/graduacao">Graduação</Link></li>
-              <li><Link href="/cursos/pos-graduacao">Pós-graduação</Link></li>
-              <li><Link href="/cursos/mba">MBA</Link></li>
-              <li><Link href="/cursos/bolsas">Bolsas e descontos</Link></li>
+              <li>
+                <Link href="/cursos/graduacao">Graduação</Link>
+              </li>
+              <li>
+                <Link href="/cursos/pos-graduacao">Pós-graduação</Link>
+              </li>
+              <li>
+                <Link href="/cursos/mba">MBA</Link>
+              </li>
+              <li>
+                <Link href="/cursos/bolsas">Bolsas e descontos</Link>
+              </li>
             </ul>
           </div>
 
           <div className={s.col}>
             <p className={s.title}>Institucional</p>
             <ul className={s.list}>
-              <li><Link href="/about">Sobre</Link></li>
-              <li><Link href="/institucional/editais">Editais</Link></li>
-              <li><Link href="/institucional/regulamentos">Regulamentos</Link></li>
-              <li><Link href="/contato">Fale conosco</Link></li>
+              <li>
+                <Link href="/about">Sobre</Link>
+              </li>
+              <li>
+                <Link href="/institucional/editais">Editais</Link>
+              </li>
+              <li>
+                <Link href="/institucional/regulamentos">Regulamentos</Link>
+              </li>
+              <li>
+                <Link href="/contato">Fale conosco</Link>
+              </li>
             </ul>
           </div>
 
           <div className={s.col}>
             <p className={s.title}>Contato</p>
+
             <ul className={s.contact}>
               <li>
                 <MapPin aria-hidden="true" />
@@ -77,41 +127,57 @@ export default function Footer() {
               </li>
               <li>
                 <Mail aria-hidden="true" />
-                <a href="mailto:contato@faculdadefilos.com.br">contato@faculdadefilos.com.br</a>
+                <a href="mailto:contato@faculdadefilos.com.br">
+                  contato@faculdadefilos.com.br
+                </a>
               </li>
             </ul>
 
             <div className={s.ctaRow}>
-              <Link href="/admissions" className={s.btnPrimary}>Inscreva-se</Link>
-              <Link href="/https://faculdadefilos.jacad.com.br/academico/professor/login" className={s.btnOutline}>Portal do Aluno</Link>
+              <Link href="/admissions" className={s.btnPrimary}>
+                Inscreva-se
+              </Link>
+
+              {/* ✅ link externo correto */}
+              <a
+                href="https://faculdadefilos.jacad.com.br/academico/professor/login"
+                className={s.btnOutline}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Portal do Aluno
+              </a>
             </div>
           </div>
         </nav>
       </div>
-<div className={s.bottom}>
-  <p className={s.copy}>
-    © {year} Faculdade Filos. Todos os direitos reservados.
-    <span className={s.sep}>•</span>
-    <span className={s.creditLine}>
-      Desenvolvido por{" "}
-      <a
-        className={s.creditLink}
-        href="https://www.instagram.com/gui.adams/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Guilherme Adams
-      </a>
-    </span>
-  </p>
 
-  <ul className={s.legal}>
-    <li><Link href="/privacidade">Privacidade</Link></li>
-    <li><Link href="/termos">Termos</Link></li>
-  </ul>
-</div>
+      <div className={s.bottom}>
+        <p className={s.copy}>
+          © {year} Faculdade Filos. Todos os direitos reservados.
+          <span className={s.sep}>•</span>
+          <span className={s.creditLine}>
+            Desenvolvido por{" "}
+            <a
+              className={s.creditLink}
+              href="https://www.instagram.com/gui.adams/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Guilherme Adams
+            </a>
+          </span>
+        </p>
 
-
+        <ul className={s.legal}>
+          <li>
+            <Link href="/privacidade">Privacidade</Link>
+          </li>
+          <li>
+            <Link href="/termos">Termos</Link>
+          </li>
+        </ul>
+      </div>
     </footer>
   );
 }

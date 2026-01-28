@@ -6,8 +6,12 @@ import { testimonials } from "./data";
 
 export default function Testimonials() {
   return (
-    <section className={s.section} id="testimonials" aria-labelledby="testimonials-title">
-      {/* Painel de introdução (esquerda) */}
+    <section
+      className={s.section}
+      id="testimonials"
+      aria-labelledby="testimonials-title"
+    >
+      {/* Intro */}
       <div className={s.introPanel}>
         <h2 id="testimonials-title" className={s.title}>
           Quem escolheu a <br />
@@ -19,37 +23,33 @@ export default function Testimonials() {
         <span className={s.titleBar} aria-hidden="true" />
 
         <p className={s.lead}>
-          Aqui na Faculdade Filos a jornada acadêmica é completa e repleta de experiências.
-          Nossos alunos são motivo de orgulho e satisfação, pois eles são espelhos
-          da excelência de nossos cursos.
+          Aqui na Faculdade Filos a jornada acadêmica é completa e repleta de
+          experiências. Nossos alunos são motivo de orgulho e satisfação, pois
+          eles são espelhos da excelência de nossos cursos.
         </p>
       </div>
 
-      {/* Lista de depoimentos (direita) */}
-      <div className={s.cards}>
-        {testimonials.map((t) => (
-          <article key={t.id} className={s.card}>
-            {/* faixa de gradiente superior */}
+      {/* Cards */}
+      <div className={s.cards} role="list">
+        {testimonials.map((t, idx) => (
+          <article key={t.id} className={s.card} role="listitem">
             <div className={s.gradient} aria-hidden="true" />
 
-            {/* foto do aluno */}
             <div className={s.photoWrap}>
               <Image
                 src={t.photo}
                 alt={`Foto de ${t.name}`}
-                width={560}
-                height={280}
                 className={s.photo}
-                sizes="(max-width: 900px) 100vw, 560px"
+                sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 360px"
+                // ✅ Só o primeiro pode ser "prioritário" (evita banda à toa)
+                priority={idx === 0}
               />
             </div>
 
-            {/* ícone de aspas */}
             <div className={s.quoteIcon} aria-hidden="true">
               <Quote />
             </div>
 
-            {/* conteúdo */}
             <div className={s.content}>
               <p className={s.excerpt}>{t.excerpt}</p>
 

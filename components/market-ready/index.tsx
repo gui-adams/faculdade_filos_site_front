@@ -5,33 +5,22 @@ import s from "./styles.module.scss";
 
 export default function MarketReady() {
   return (
-    <section className={s.section} id="market-ready" aria-labelledby="market-ready-title">
+    <section
+      className={s.section}
+      id="market-ready"
+      aria-labelledby="market-ready-title"
+    >
       {/* Coluna de mídia */}
       <div className={s.mediaCol}>
-        <div className={s.portrait}>
-          <Image
-            src="/market/graduate.jpg"
-            alt="Formanda com diploma"
-            width={360}
-            height={480}
-            className={s.img}
-            sizes="(max-width: 1024px) 60vw, 360px"
-            priority
-          />
-        </div>
-
-        <div className={s.landscapeWrap}>
-          <div className={s.landscape}>
-            <Image
-              src="/market/online-class.jpg"
-              alt="Aula online"
-              width={720}
-              height={420}
-              className={s.img}
-              sizes="(max-width: 1024px) 90vw, 720px"
-            />
-          </div>
-        </div>
+        <Image
+          src="/mercado.webp"
+          alt="Formação acadêmica preparada para o mercado de trabalho"
+          width={720}
+          height={520}
+          className={s.image}
+          priority
+          sizes="(max-width: 1100px) 92vw, 720px"
+        />
       </div>
 
       {/* Coluna de conteúdo */}
@@ -41,7 +30,8 @@ export default function MarketReady() {
         </h2>
 
         <p className={s.lead}>
-          Aqui você tem programas de estágio e orientações para conquistar sua vaga.
+          Aqui você encontra orientação profissional, programas de estágio
+          e uma formação alinhada às reais demandas do mercado de trabalho.
         </p>
 
         <div className={s.stats}>
@@ -49,7 +39,9 @@ export default function MarketReady() {
             <Users className={s.icon} aria-hidden="true" />
             <div>
               <p className={s.kpi}>Diversos</p>
-              <p className={s.desc}>Estudantes matriculados em todo o Brasil.</p>
+              <p className={s.desc}>
+                Estudantes matriculados em todo o Brasil.
+              </p>
             </div>
           </div>
 
@@ -57,7 +49,9 @@ export default function MarketReady() {
             <Briefcase className={s.icon} aria-hidden="true" />
             <div>
               <p className={s.kpi}>90%</p>
-              <p className={s.desc}>De estudantes empregados.</p>
+              <p className={s.desc}>
+                Dos estudantes inseridos no mercado.
+              </p>
             </div>
           </div>
 
@@ -65,16 +59,18 @@ export default function MarketReady() {
             <BadgeCheck className={s.icon} aria-hidden="true" />
             <div>
               <p className={s.kpi}>+5</p>
-              <p className={s.desc}>Cursos avaliados com nota máxima no MEC.</p>
+              <p className={s.desc}>
+                Cursos com avaliação máxima no MEC.
+              </p>
             </div>
           </div>
 
           <div className={s.card}>
             <Globe2 className={s.icon} aria-hidden="true" />
             <div>
-              <p className={s.kpi}>Cursos</p>
+              <p className={s.kpi}>Cursos atuais</p>
               <p className={s.desc}>
-                Forrmação compatível com demandas do mercado.
+                Formação alinhada às exigências do mercado.
               </p>
             </div>
           </div>
@@ -82,7 +78,7 @@ export default function MarketReady() {
 
         <div className={s.ctaRow}>
           <Link href="/admissions" className={s.btnLight}>
-            Inscreva-se <ArrowRight aria-hidden="true" />
+            Inscreva-se agora <ArrowRight aria-hidden="true" />
           </Link>
         </div>
       </div>

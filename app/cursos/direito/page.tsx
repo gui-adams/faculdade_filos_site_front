@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookText, Scale, Target, Users, Award, FileText } from "lucide-react";
+import { ArrowRight, BookText, Scale, Target, Award, FileText } from "lucide-react";
 import s from "./styles.module.scss";
+
+// ✅ Premium: import estático (blur automático + build time)
+import heroImg from "@/public/cursos/direito.webp";
 
 export const metadata: Metadata = {
   title: "Curso de Direito",
-  description: "Formar profissionais éticos, críticos e comprometidos com a promoção da justiça e da cidadania.",
+  description:
+    "Formar profissionais éticos, críticos e comprometidos com a promoção da justiça e da cidadania.",
   alternates: { canonical: "/cursos/direito" },
 };
 
@@ -16,38 +20,44 @@ export default function DireitoPage() {
       <section className={s.hero}>
         <div className={s.heroContent}>
           <span className={s.kicker}>Graduação</span>
+
           <h1 className={s.title}>Direito</h1>
+
           <p className={s.lead}>
-            Formar profissionais éticos, críticos e comprometidos com a promoção da justiça e da cidadania, preparados para atuar em diversas áreas jurídicas.
+            Formar profissionais éticos, críticos e comprometidos com a promoção da justiça e da cidadania,
+            preparados para atuar em diversas áreas jurídicas.
           </p>
+
           <p className={s.coordinator}>
             Coordenação: <strong>Professor Alef Guerra</strong>
           </p>
+
           <div className={s.actions}>
             <Link href="/admissions?curso=direito" className={s.ctaPrimary}>
               Inscreva-se agora <ArrowRight size={20} />
             </Link>
-              <Link href="/caminho/para/matriz-adm.pdf" className={s.ctaSecondary} target="_blank">
+
+            <Link href="/caminho/para/matriz-direito.pdf" className={s.ctaSecondary} target="_blank">
               Matriz Curricular <FileText size={20} />
             </Link>
           </div>
         </div>
-        <div className={s.heroImage}>
+
+        <div className={s.heroMedia} aria-hidden="true">
           <Image
-            src="/cursos/direito.jpg" // Imagem existente do curso
+            src={heroImg}
             alt="Curso de Direito"
-            width={560}
-            height={420}
+            className={s.heroImg}
             priority
-            sizes="(max-width: 768px) 90vw, 560px"
+            placeholder="blur"
+            quality={80}
+            sizes="(max-width: 900px) 92vw, 520px"
           />
         </div>
       </section>
 
       <section className={s.details}>
         <div className={s.detailGrid}>
-
-          {/* Objetivos */}
           <div className={s.detailCard}>
             <div className={s.iconWrapper}>
               <Target />
@@ -66,10 +76,10 @@ export default function DireitoPage() {
               <BookText />
             </div>
             <h2 className={s.cardTitle}>Estrutura Curricular</h2>
-            <p>O curso é estruturado em 10 semestres (5 anos) e contempla:</p>
+            <p className={s.cardText}>O curso é estruturado em 10 semestres (5 anos) e contempla:</p>
             <ul className={s.list}>
               <li><strong>Formação Básica:</strong> Filosofia, Ética, Ciência Política e Sociologia.</li>
-              <li><strong>Formação Profissional:</strong> Direito Constitucional, Civil, Penal, Empresarial, etc.</li>
+              <li><strong>Formação Profissional:</strong> Constitucional, Civil, Penal, Empresarial, etc.</li>
               <li><strong>Prática Jurídica:</strong> Estágios no Núcleo de Prática Jurídica (NPJ).</li>
               <li><strong>TCC:</strong> Aprofundamento acadêmico em temas jurídicos relevantes.</li>
             </ul>
@@ -96,11 +106,10 @@ export default function DireitoPage() {
             <ul className={s.list}>
               <li>Sólida formação teórica e prática.</li>
               <li>Capaz de atuar de forma crítica, ética e reflexiva.</li>
-              <li>Preparado para as carreiras jurídicas públicas e privadas.</li>
+              <li>Preparado para carreiras jurídicas públicas e privadas.</li>
               <li>Comprometido com a defesa da justiça e da cidadania.</li>
             </ul>
           </div>
-
         </div>
       </section>
     </>

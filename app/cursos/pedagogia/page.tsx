@@ -1,13 +1,16 @@
-// app/cursos/pedagogia/page.tsx
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookHeart, Users, Target, Award, School, FileText } from "lucide-react";
+import { ArrowRight, BookHeart, Target, Award, School, FileText } from "lucide-react";
 import s from "./styles.module.scss";
+
+// ✅ Premium: import estático (blur automático + build time)
+import heroImg from "@/public/cursos/pedagogia.webp";
 
 export const metadata: Metadata = {
   title: "Curso de Pedagogia",
-  description: "Formar educadores comprometidos com a transformação social, a valorização da educação e a promoção da cidadania.",
+  description:
+    "Formar educadores comprometidos com a transformação social, a valorização da educação e a promoção da cidadania.",
   alternates: { canonical: "/cursos/pedagogia" },
 };
 
@@ -17,37 +20,44 @@ export default function PedagogiaPage() {
       <section className={s.hero}>
         <div className={s.heroContent}>
           <span className={s.kicker}>Graduação</span>
+
           <h1 className={s.title}>Pedagogia</h1>
+
           <p className={s.lead}>
-            Formar educadores comprometidos com a transformação social, a valorização da educação e a promoção da cidadania.
+            Formar educadores comprometidos com a transformação social, a valorização da educação e a promoção da
+            cidadania.
           </p>
+
           <p className={s.coordinator}>
             Coordenação: <strong>Professora Janes Carlas</strong>
           </p>
+
           <div className={s.actions}>
             <Link href="/admissions?curso=pedagogia" className={s.ctaPrimary}>
               Inscreva-se agora <ArrowRight size={20} />
             </Link>
-              <Link href="/caminho/para/matriz-adm.pdf" className={s.ctaSecondary} target="_blank">
+
+            <Link href="/caminho/para/matriz-pedagogia.pdf" className={s.ctaSecondary} target="_blank">
               Matriz Curricular <FileText size={20} />
             </Link>
           </div>
         </div>
-        <div className={s.heroImage}>
+
+        <div className={s.heroMedia} aria-hidden="true">
           <Image
-            src="/cursos/pedagogia.jpg" 
+            src={heroImg}
             alt="Curso de Pedagogia"
-            width={560}
-            height={420}
+            className={s.heroImg}
             priority
-            sizes="(max-width: 768px) 90vw, 560px"
+            placeholder="blur"
+            quality={80}
+            sizes="(max-width: 900px) 92vw, 520px"
           />
         </div>
       </section>
 
       <section className={s.details}>
         <div className={s.detailGrid}>
-
           <div className={s.detailCard}>
             <div className={s.iconWrapper}>
               <Target />
@@ -66,7 +76,7 @@ export default function PedagogiaPage() {
               <BookHeart />
             </div>
             <h2 className={s.cardTitle}>Estrutura Curricular</h2>
-            <p>O curso possui duração de 8 semestres (4 anos) e contempla:</p>
+            <p className={s.cardText}>O curso possui duração de 8 semestres (4 anos) e contempla:</p>
             <ul className={s.list}>
               <li><strong>Fundamentos da Educação:</strong> História, Filosofia, Psicologia e Sociologia.</li>
               <li><strong>Práticas de Ensino:</strong> Didática e metodologias de diversas áreas.</li>
@@ -100,7 +110,6 @@ export default function PedagogiaPage() {
               <li>Habilitado a desenvolver pesquisas para a melhoria da educação.</li>
             </ul>
           </div>
-
         </div>
       </section>
     </>

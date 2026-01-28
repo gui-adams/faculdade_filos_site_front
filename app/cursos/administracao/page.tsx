@@ -1,13 +1,16 @@
-// app/cursos/administracao/page.tsx
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookCheck, Building2, Target, Users, Award, FileText } from "lucide-react";
+import { ArrowRight, BookCheck, Target, Users, Award, FileText } from "lucide-react";
 import s from "./styles.module.scss";
+
+// ✅ Premium: import estático (blur automático + build time)
+import heroImg from "@/public/cursos/administracao.webp";
 
 export const metadata: Metadata = {
   title: "Curso de Administração",
-  description: "Formar profissionais capazes de atuar de maneira estratégica, ética e inovadora na gestão de organizações públicas e privadas.",
+  description:
+    "Formar profissionais capazes de atuar de maneira estratégica, ética e inovadora na gestão de organizações públicas e privadas.",
   alternates: { canonical: "/cursos/administracao" },
 };
 
@@ -17,39 +20,44 @@ export default function AdministracaoPage() {
       <section className={s.hero}>
         <div className={s.heroContent}>
           <span className={s.kicker}>Graduação</span>
+
           <h1 className={s.title}>Administração</h1>
+
           <p className={s.lead}>
-            Formação de profissionais capazes de atuar de maneira estratégica,
-            ética e inovadora na gestão de organizações públicas e privadas.
+            Formação de profissionais capazes de atuar de maneira estratégica, ética e inovadora na gestão de
+            organizações públicas e privadas.
           </p>
+
           <p className={s.coordinator}>
             Coordenação: <strong>Professora Patricia de Carvalho</strong>
           </p>
+
           <div className={s.actions}>
             <Link href="/admissions?curso=administracao" className={s.ctaPrimary}>
               Inscreva-se agora <ArrowRight size={20} />
             </Link>
+
             <Link href="/caminho/para/matriz-adm.pdf" className={s.ctaSecondary} target="_blank">
               Matriz Curricular <FileText size={20} />
             </Link>
           </div>
         </div>
-        <div className={s.heroImage}>
+
+        <div className={s.heroMedia} aria-hidden="true">
           <Image
-            src="/cursos/administracao.jpg" 
+            src={heroImg}
             alt="Curso de Administração"
-            width={560}
-            height={420}
+            className={s.heroImg}
             priority
-            sizes="(max-width: 768px) 90vw, 560px"
+            placeholder="blur"
+            quality={80}
+            sizes="(max-width: 900px) 92vw, 520px"
           />
         </div>
       </section>
 
       <section className={s.details}>
         <div className={s.detailGrid}>
-
-          {/* Objetivos */}
           <div className={s.detailCard}>
             <div className={s.iconWrapper}>
               <Target />
@@ -63,18 +71,25 @@ export default function AdministracaoPage() {
             </ul>
           </div>
 
-          {/* Estrutura Curricular */}
           <div className={s.detailCard}>
             <div className={s.iconWrapper}>
               <BookCheck />
             </div>
             <h2 className={s.cardTitle}>Estrutura Curricular</h2>
-            <p>O curso é estruturado em 8 semestres (4 anos) e contempla:</p>
+            <p className={s.cardText}>O curso é estruturado em 8 semestres (4 anos) e contempla:</p>
             <ul className={s.list}>
-              <li><strong>Formação Básica:</strong> Economia, Contabilidade, Matemática Financeira.</li>
-              <li><strong>Formação Profissional:</strong> Gestão de Pessoas, Marketing, Finanças, Logística.</li>
-              <li><strong>Gestão Pública e Social:</strong> Políticas Públicas e Sustentabilidade.</li>
-              <li><strong>Prática Profissional:</strong> Projetos, estágios e simulações de negócios.</li>
+              <li>
+                <strong>Formação Básica:</strong> Economia, Contabilidade, Matemática Financeira.
+              </li>
+              <li>
+                <strong>Formação Profissional:</strong> Gestão de Pessoas, Marketing, Finanças, Logística.
+              </li>
+              <li>
+                <strong>Gestão Pública e Social:</strong> Políticas Públicas e Sustentabilidade.
+              </li>
+              <li>
+                <strong>Prática Profissional:</strong> Projetos, estágios e simulações de negócios.
+              </li>
             </ul>
           </div>
 
@@ -103,7 +118,6 @@ export default function AdministracaoPage() {
               <li>Habilitado para empreender e contribuir para o desenvolvimento da sociedade.</li>
             </ul>
           </div>
-
         </div>
       </section>
     </>

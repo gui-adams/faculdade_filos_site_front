@@ -1,13 +1,16 @@
-// app/cursos/radiologia/page.tsx
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookText, HeartPulse, Target, Users, Award, RadioTower, FileText } from "lucide-react";
+import { ArrowRight, BookText, HeartPulse, Target, Award, FileText } from "lucide-react";
 import s from "./styles.module.scss";
+
+// ✅ Premium: import estático (blur automático + build time)
+import heroImg from "@/public/cursos/radiologia.webp";
 
 export const metadata: Metadata = {
   title: "Curso de Tecnólogo em Radiologia",
-  description: "Formar profissionais capacitados para atuar de maneira ética e segura na realização de exames e procedimentos radiológicos.",
+  description:
+    "Formar profissionais capacitados para atuar de maneira ética e segura na realização de exames e procedimentos radiológicos.",
   alternates: { canonical: "/cursos/radiologia" },
 };
 
@@ -17,37 +20,44 @@ export default function RadiologiaPage() {
       <section className={s.hero}>
         <div className={s.heroContent}>
           <span className={s.kicker}>Graduação</span>
+
           <h1 className={s.title}>Tecnólogo em Radiologia</h1>
+
           <p className={s.lead}>
-            Formar profissionais capacitados para atuar de maneira ética e segura na realização de exames e procedimentos radiológicos, contribuindo para a promoção da saúde.
+            Formar profissionais capacitados para atuar de maneira ética e segura na realização de exames e procedimentos
+            radiológicos, contribuindo para a promoção da saúde.
           </p>
+
           <p className={s.coordinator}>
             Coordenação: <strong>Professora Amariles Procopio</strong>
           </p>
+
           <div className={s.actions}>
             <Link href="/admissions?curso=radiologia" className={s.ctaPrimary}>
               Inscreva-se agora <ArrowRight size={20} />
             </Link>
-              <Link href="/caminho/para/matriz-adm.pdf" className={s.ctaSecondary} target="_blank">
+
+            <Link href="/caminho/para/matriz-radiologia.pdf" className={s.ctaSecondary} target="_blank">
               Matriz Curricular <FileText size={20} />
             </Link>
           </div>
         </div>
-        <div className={s.heroImage}>
+
+        <div className={s.heroMedia} aria-hidden="true">
           <Image
-            src="/cursos/radiologia.jpg"
+            src={heroImg}
             alt="Curso de Tecnólogo em Radiologia"
-            width={560}
-            height={420}
+            className={s.heroImg}
             priority
-            sizes="(max-width: 768px) 90vw, 560px"
+            placeholder="blur"
+            quality={80}
+            sizes="(max-width: 900px) 92vw, 520px"
           />
         </div>
       </section>
 
       <section className={s.details}>
         <div className={s.detailGrid}>
-
           <div className={s.detailCard}>
             <div className={s.iconWrapper}>
               <Target />
@@ -66,7 +76,7 @@ export default function RadiologiaPage() {
               <BookText />
             </div>
             <h2 className={s.cardTitle}>Estrutura Curricular</h2>
-            <p>O curso é estruturado em 6 semestres (3 anos) e contempla:</p>
+            <p className={s.cardText}>O curso é estruturado em 6 semestres (3 anos) e contempla:</p>
             <ul className={s.list}>
               <li><strong>Fundamentos da Saúde:</strong> Anatomia, Fisiologia, Biofísica e Biossegurança.</li>
               <li><strong>Formação Profissional:</strong> Radiologia, Tomografia, Ressonância, Radioterapia.</li>
@@ -100,7 +110,6 @@ export default function RadiologiaPage() {
               <li>Habilitado a acompanhar a evolução tecnológica da área.</li>
             </ul>
           </div>
-
         </div>
       </section>
     </>

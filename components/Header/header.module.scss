@@ -16,16 +16,17 @@
   z-index: 60;
 }
 
+/* wrapper interno */
 .inner {
   @include m.container;
 
   height: 72px;
   display: grid;
-  grid-template-columns: auto 1fr auto; /* logo | nav | actions */
+  grid-template-columns: auto 1fr auto; /* brand | nav | actions */
   align-items: center;
   gap: 16px;
 
-  position: relative; /* necessário pro burger absoluto no mobile */
+  position: relative; /* para centralização/burger no mobile */
 }
 
 /* =================== Brand / Logo =================== */
@@ -35,8 +36,12 @@
   align-items: center;
 }
 
-/* Reset global aplica max-width:100% em img/svg.
-   Aqui travamos o tamanho do logo para não "esticar". */
+/* evita a coluna do logo "esticar" */
+.brand {
+  justify-self: start;
+}
+
+/* SVG importado pelo next/image vira <img>. Controlamos pelo className */
 .logo {
   width: 180px;
   height: auto;
@@ -72,10 +77,19 @@
 }
 
 /* Alternância Menu/X */
-.iconMenu  { display: inline-block; }
-.iconClose { display: none; }
-.toggle:checked ~ .burger .iconMenu  { display: none; }
-.toggle:checked ~ .burger .iconClose { display: inline-block; }
+.iconMenu {
+  display: inline-block;
+}
+.iconClose {
+  display: none;
+}
+
+.toggle:checked ~ .burger .iconMenu {
+  display: none;
+}
+.toggle:checked ~ .burger .iconClose {
+  display: inline-block;
+}
 
 /* =================== Navegação desktop =================== */
 .navDesktop {
@@ -94,18 +108,22 @@
 
   a {
     color: $text;
-    text-decoration: none;
     font-weight: 500;
     line-height: 72px;
     display: inline-flex;
     align-items: center;
+    text-decoration: none;
 
-    &:hover { color: $brand-600; }
+    &:hover {
+      color: $brand-600;
+    }
   }
 }
 
 /* ===== Dropdown (hover/focus) ===== */
-.hasDropdown { position: relative; }
+.hasDropdown {
+  position: relative;
+}
 
 .trigger {
   display: inline-flex;
@@ -114,7 +132,7 @@
 }
 
 .caret {
-  font-size: .85em;
+  font-size: 0.85em;
   transform: translateY(-1px);
 }
 
@@ -122,16 +140,20 @@
   position: absolute;
   top: 64px;
   left: 0;
+
   min-width: 220px;
   padding: 8px;
   border: 1px solid #e6e8ef;
   border-radius: $radius-md;
   background: $bg;
   box-shadow: $shadow-md;
+
   display: none;
   z-index: 70;
 
-  li { list-style: none; }
+  li {
+    list-style: none;
+  }
 
   a {
     display: block;
@@ -148,9 +170,14 @@
 }
 
 @media (hover: hover) {
-  .hasDropdown:hover .dropdown { display: block; }
+  .hasDropdown:hover .dropdown {
+    display: block;
+  }
 }
-.hasDropdown:focus-within .dropdown { display: block; }
+
+.hasDropdown:focus-within .dropdown {
+  display: block;
+}
 
 /* =================== Ações (lado direito) =================== */
 .actions {
@@ -163,12 +190,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   height: 40px;
   padding: 0 16px;
   border-radius: 10px;
+
   font-weight: 800;
   text-decoration: none;
-  transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .btnPrimary {
@@ -176,7 +207,11 @@
   color: #fff;
   border: 1px solid $brand;
 
-  &:hover { transform: translateY(-1px); background: $brand-600; border-color: $brand-600; }
+  &:hover {
+    transform: translateY(-1px);
+    background: $brand-600;
+    border-color: $brand-600;
+  }
 }
 
 .btnOutline {
@@ -184,37 +219,44 @@
   color: $brand;
   border: 1.5px solid $brand;
 
-  &:hover { transform: translateY(-1px); background: #f4f7ff; }
+  &:hover {
+    transform: translateY(-1px);
+    background: #f4f7ff;
+  }
 }
 
 /* =================== Mobile (drawer) =================== */
 .mobileNav {
-  display: none; /* escondido no desktop */
+  display: none; /* desktop */
 }
 
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
-  transition: opacity .2s ease, visibility .2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .drawer {
   position: fixed;
   top: 0;
   right: 0;
+
   height: 100%;
   width: 85vw;
   max-width: 380px;
+
   background: $bg;
   transform: translateX(100%);
-  transition: transform .25s ease;
-  box-shadow: -12px 0 24px rgba(0,0,0,.12);
+  transition: transform 0.25s ease;
+
+  box-shadow: -12px 0 24px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   padding: 16px;
+
   z-index: 80;
 }
 
@@ -232,13 +274,16 @@
   padding: 4px 8px;
   border-radius: 10px;
 
-  &:hover { background: #f2f5fb; }
+  &:hover {
+    background: #f2f5fb;
+  }
 }
 
 .menuList {
   list-style: none;
   padding: 8px 0 16px;
   margin: 0;
+
   display: grid;
   gap: 8px;
 
@@ -248,7 +293,9 @@
     color: $text;
     font-weight: 800;
 
-    &:hover { color: $brand-600; }
+    &:hover {
+      color: $brand-600;
+    }
   }
 }
 
@@ -269,11 +316,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     width: 32px;
     height: 32px;
     border-radius: 10px;
 
-    &:hover { background: #f4f7ff; }
+    &:hover {
+      background: #f4f7ff;
+    }
   }
 
   a svg {
@@ -282,41 +332,61 @@
     color: $text;
   }
 
-  a:hover svg { color: $brand-600; }
+  a:hover svg {
+    color: $brand-600;
+  }
 }
 
 /* Toggle abre drawer/backdrop */
-.toggle:checked ~ .mobileNav .backdrop { opacity: 1; visibility: visible; }
-.toggle:checked ~ .mobileNav .drawer   { transform: translateX(0); }
+.toggle:checked ~ .mobileNav .backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+.toggle:checked ~ .mobileNav .drawer {
+  transform: translateX(0);
+}
 
 /* =================== Mobile breakpoint (<= lg) =================== */
 @media (max-width: 1024px) {
   /* some desktop */
-  .navDesktop { display: none; }
-  .actions    { display: none; }
-  .mobileNav  { display: block; }
-  .burger     { display: inline-flex; }
-
-  /* logo centralizado na viewport, burger à direita */
-  .inner {
-    grid-template-columns: 1fr auto;
+  .navDesktop {
+    display: none;
   }
 
+  .actions {
+    display: none;
+  }
+
+  .mobileNav {
+    display: block;
+  }
+
+  .burger {
+    display: inline-flex;
+  }
+
+  /* layout mobile: burger à direita e logo CENTRALIZADO NA TELA */
+  .inner {
+    grid-template-columns: 1fr auto; /* (conteúdo) | burger */
+  }
+
+  /* centralização real: independente do burger */
   .brand {
-    grid-column: 1 / -1;
-    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    justify-self: unset;
   }
 
   .logo {
-    width: 170px; /* ajuste fino no mobile */
+    width: 170px;
     max-width: none;
   }
 
   .burger {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
+    justify-self: end;
   }
 }
 

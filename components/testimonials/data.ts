@@ -1,11 +1,15 @@
 import type { Testimonial } from "./types";
 
+import israelPhoto from "@/public/depoimentos/israel.webp";
+import leticiaPhoto from "@/public/depoimentos/leticia.webp";
+import ashPhoto from "@/public/depoimentos/ash.webp";
+
 export const testimonials: Testimonial[] = [
   {
     id: "israel",
     name: "Israel",
     program: "Filosofia",
-    photo: "/testimonials/israel.jpg",
+    photo: israelPhoto,
     excerpt:
       "Foi uma grande jornada na minha vida, fazer parte de uma das melhores universidades do Brasil...",
     href: "/depoimentos/israel",
@@ -14,16 +18,16 @@ export const testimonials: Testimonial[] = [
     id: "leticia",
     name: "Letícia Naome",
     program: "Ciências Econômicas",
-    photo: "/testimonials/leticia.jpg",
+    photo: leticiaPhoto,
     excerpt:
-      "Entrei na Faculdade Filos em 2016 para fazer ciências econômicas com bolsa e desde então...",
+      "Entrei na Faculdade Filos em 2016 para fazer Ciências Econômicas com bolsa e desde então...",
     href: "/depoimentos/leticia",
   },
   {
     id: "ash",
     name: "Ash",
     program: "Administração",
-    photo: "/testimonials/ash.jpg",
+    photo: ashPhoto,
     excerpt:
       "A experiência acadêmica foi completa e transformadora. Tive apoio para estágio e pesquisa...",
     href: "/depoimentos/ash",
